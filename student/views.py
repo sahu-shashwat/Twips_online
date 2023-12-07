@@ -27,7 +27,7 @@ def student_view(request):
                     Please enter this OTP {otp}.
                     Thankyou...'''
             send_mail(subject=subject,message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list=[email,])
-            return redirect('/otp')
+            return redirect('/student/otp')
     return render(request=request,template_name='student_register.html',context={'form':form})
 
 
@@ -35,9 +35,9 @@ def student_view(request):
 def otp_view(request):
     if request.method=='POST':
         if str(otp_confirm)==str(request.POST['otp']):
-            return redirect('/login')
+            return redirect('/student/login')
         else:
-            return redirect('/register')
+            return redirect('/student/register')
     return render(request=request,template_name='st_otp.html')
 
 
@@ -50,15 +50,15 @@ def student_login_view(request):
             user=authenticate(username=form.cleaned_data['username'],password=form.cleaned_data['password'])
             if user:
                 login(request,user)
-                return redirect("/home")
+                return redirect("/student/home")
     return render(request=request,template_name='student_login.html',context={'form':form})
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/student/login')
 def home_view(request):
     return render(request=request,template_name='student_home.html')
 
-@login_required(login_url='/login')
+@login_required(login_url='/student/login')
 def logout_view(request):
     logout(request)
-    return redirect('/login')
+    return redirect('/student/login')
