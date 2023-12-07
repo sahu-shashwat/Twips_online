@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from app1.models import student_model
-from app1.forms import student_form
+from student.models import student_model
+from student.forms import student_form
 from django.core.mail import send_mail
 from django.conf import settings
 import random

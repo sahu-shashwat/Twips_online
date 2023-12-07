@@ -1,5 +1,5 @@
 from django.urls import path
-from app1.views import student_view,otp_view
+from student.views import student_view,otp_view
 
 
 app_name='app1'

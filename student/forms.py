@@ -1,5 +1,5 @@
 from django import forms
-from app1.models import student_model
+from student.models import student_model
 from django.contrib.auth.hashers import make_password
 import re
 
