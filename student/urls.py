@@ -2,7 +2,7 @@ from django.urls import path
 from student.views import student_view,otp_view
 
 
-app_name='app1'
+app_name='student'
 
 urlpatterns = [
     path(route='register/',view=student_view,name='register'),
