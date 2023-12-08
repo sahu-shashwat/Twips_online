@@ -8,3 +8,4 @@ class teacher_model(User):
     phone_number=models.PositiveBigIntegerField()
     year_of_experience=models.PositiveSmallIntegerField()
     gender=models.CharField(max_length=10,choices=[['Male','Male'],['Female','Female'],['Others','Others']])
+

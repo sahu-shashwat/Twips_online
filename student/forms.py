@@ -8,7 +8,7 @@ class student_form(forms.ModelForm):
 
     class Meta:
         model=student_model
-        fields=['username','first_name','last_name','email','roll_number','phone_number','date_of_birth','stream','gender','password']
+        fields=['username','first_name','last_name','email','roll_number','phone_number','date_of_birth','stream','section','gender','password']
 
 
     def clean_username(self):
