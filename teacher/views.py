@@ -22,7 +22,7 @@ def teacher_view(request):
             otp=random.randint(000000,999999)
             otp_confirm=otp
             email=form.cleaned_data['email']
-            subject='teacher Verification Code'
+            subject='Teacher Verification Code'
             msg=f'''Dear User,
                     Please enter this OTP {otp}.
                     Thankyou...'''
