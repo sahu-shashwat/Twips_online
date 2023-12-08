@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body>
+    <h1>Teacher Login Page</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{form}}
+        </table>
+        <input type="submit" value="Login">
+    </form>
+    <a href="{% url 'teacher:register' %}"><button>Forgotten Password</button></a>
+    <h2>New User?</h2>
+    <a href="{% url 'teacher:register' %}"><button>Register Page</button></a>
+</body>
+</html>

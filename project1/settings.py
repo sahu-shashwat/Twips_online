@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=@%zv+%t%eb#5xz(!xm=je3#^2(3&nx%3^0h-qv@e)f-gmobjy'
+SECRET_KEY = 'django-insecure-h+-)33d0qj=u2b^4vnueou#z^wmkyk9i98wcpvb13g=ed=0-a9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles','app1',
+    'django.contrib.staticfiles','app1'
 ]
 
 MIDDLEWARE = [
@@ -121,3 +121,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER='venkykanusu2424@gmail.com'
+EMAIL_HOST_PASSWORD='rdsnyyljhteduomb'
