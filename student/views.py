@@ -7,6 +7,7 @@ from django.contrib.auth import login,logout,authenticate
 from django.core.mail import send_mail
 from django.conf import settings
 import random
+from django.contrib import messages
 
 # Create your views here.
 
@@ -51,6 +52,9 @@ def student_login_view(request):
             if user:
                 login(request,user)
                 return redirect("/student/home")
+            else:                
+                messages.error(request,"Username or Password is incorrect")
+                return redirect("/student/login")
     return render(request=request,template_name='student_login.html',context={'form':form})
 
 
