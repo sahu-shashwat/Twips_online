@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from teacher.models import teacher_model
-from teacher.forms import teacher_form,teacher_login_form
+from teacher.models import teacher_model,domain_model,course_model
+from teacher.forms import teacher_form,teacher_login_form,domain_form,course_form
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout,authenticate
 from django.core.mail import send_mail
@@ -62,3 +62,47 @@ def teacher_home_view(request):
 def teacher_logout_view(request):
     logout(request)
     return redirect('/teacher/login')
+
+def register_domain(request):
+    form=domain_form()
+    if request.method=='POST':
+        form=domain_form(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Domain data saved")
+        else:
+            return HttpResponse('data not saved')
+    return render(request=request, template_name="register_domain.html", context={"form": form})
+
+def update_domain(request,pk):
+    form=domain_form(instance=domain_model.objects.get(did=pk))
+    if request.method=='POST':
+        form=domain_form(request.POST,instance=domain_model.objects.get(did=pk))
+        if form.is_valid():
+            form.save()
+            return HttpResponse('data updated')
+        else:
+            return HttpResponse("data not updated")
+    return render(request=request,template_name='update_domain.html',context={'form':form})
+
+def register_course(request):
+    form=course_form()
+    if request.method=='POST':
+        form=course_form(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("course data saved")
+        else:
+            return HttpResponse('data not saved')
+    return render(request=request, template_name="register_course.html", context={"form": form})
+
+def update_course(request,pk):
+    form=course_form(instance=course_model.objects.get(cid=pk))
+    if request.method=='POST':
+        form=course_form(request.POST,instance=course_model.objects.get(cid=pk))
+        if form.is_valid():
+            form.save()
+            return HttpResponse('course updated')
+        else:
+            return HttpResponse("data not updated")
+    return render(request=request,template_name='update_course.html',context={'form':form})

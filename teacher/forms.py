@@ -1,5 +1,5 @@
 from django import forms
-from teacher.models import teacher_model
+from teacher.models import teacher_model,domain_model,course_model
 from django.contrib.auth.hashers import make_password
 import re
 
@@ -104,3 +104,13 @@ class teacher_login_form(forms.Form):
         if len(re.findall('[^a-z A-z 0-9]',pwd))==0:
             raise forms.ValidationError('Password should contains atleast one special charecter')
         return pwd
+    
+class domain_form(forms.ModelForm):
+       class Meta:
+        model = domain_model
+        fields = "__all__"
+     
+class course_form(forms.ModelForm):
+      class Meta:
+        model = course_model
+        fields = "__all__"
