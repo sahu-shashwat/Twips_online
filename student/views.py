@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from student.models import student_model
+from student.models import student_model,buy_course_model
+from teacher.models import course_video_model,course_model
 from student.forms import student_form,student_login_form
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout,authenticate
@@ -67,3 +68,15 @@ def logout_view(request):
     logout(request)
     return redirect('/student/login')
 
+def all_course(request):
+    res = course_model.objects.all()
+    return render(request=request, template_name="all_course.html", context={"res": res})
+
+def buy_course(request, pk):
+    res = course_model.objects.get(cid=pk)
+    if request.method=='POST':
+        buy_course_model.objects.create(sid=request.user.id,course_id=pk)
+        return HttpResponse("you bougth the course")
+    return render(
+        request=request, template_name="buy_course.html", context={"res": res}
+    )

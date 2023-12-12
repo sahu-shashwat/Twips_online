@@ -13,6 +13,7 @@
         <th>name</th>
         <th>desc</th>
         <th>IMAGE</th>
+        <th>price</th>
       </tr>
       {% for i in res %}
       <tr>
@@ -24,14 +25,10 @@
             ><img src="{{i.image.url}}" alt="" height="100" width="95"
           /></a>
         </td>
+        <td>{{i.price}}</td>
         <td>
-          <a href="{% url 'teacher:update_course' pk=i.cid %}"
-            ><button>Update Course</button></a
-          >
-        </td>
-        <td>
-          <a href="{% url 'teacher:delete_course' pk=i.cid %}"
-            ><button>Delete Course</button></a
+          <a href="{% url 'student:buy_course' pk=i.cid %}"
+            ><button>Buy {{i.course_name|title}}</button></a
           >
         </td>
       </tr>

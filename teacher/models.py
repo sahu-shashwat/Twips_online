@@ -28,9 +28,11 @@ class course_model(models.Model):
     cid = models.AutoField(primary_key=True)
     course_name = models.TextField(max_length=20)
     desc = models.TextField(max_length=100)
+    price=models.BigIntegerField(default=1000)
     image = models.ImageField()
     def __str__(self):
         return self.course_name
+
 
 class course_video_model(models.Model):
     cid=models.ForeignKey(course_model,on_delete=models.CASCADE)

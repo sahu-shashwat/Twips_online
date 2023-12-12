@@ -1,7 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from teacher.models import teacher_model, domain_model, course_model,course_video_model
-from teacher.forms import teacher_form, teacher_login_form, domain_form, course_form,video_form
+from teacher.models import teacher_model, domain_model, course_model, course_video_model
+from teacher.forms import (
+    teacher_form,
+    teacher_login_form,
+    domain_form,
+    course_form,
+    video_form,
+)
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.core.mail import send_mail
@@ -165,9 +172,10 @@ def list_course(request):
     res = course_model.objects.all()
     return render(request=request, template_name="list.html", context={"res": res})
 
+
 def register_video(request):
     form = video_form()
-    if request.method == "POST" :
+    if request.method == "POST":
         form = video_form(request.POST)
         if form.is_valid():
             form.save()
@@ -177,6 +185,7 @@ def register_video(request):
     return render(
         request=request, template_name="register_video.html", context={"form": form}
     )
+
 
 def update_video(request, pk):
     form = video_form(instance=course_video_model.objects.get(vid=pk))
@@ -193,6 +202,7 @@ def update_video(request, pk):
         request=request, template_name="update_video.html", context={"form": form}
     )
 
+
 def delete_video(request, pk):
     res = course_video_model.objects.get(vid=pk)
     if request.method == "POST":
@@ -202,6 +212,9 @@ def delete_video(request, pk):
         request=request, template_name="delete_video.html", context={"res": res}
     )
 
-def list_video(request):
-    res = course_video_model.objects.all()
-    return render(request=request, template_name="list_video.html", context={"res": res})
+
+def list_video(request,pk):
+    res = course_video_model.objects.filter(cid=pk)
+    return render(
+        request=request, template_name="list_video.html", context={"res": res}
+    )
