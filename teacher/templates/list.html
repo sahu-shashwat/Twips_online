@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>list</title>
+  </head>
+  <body>
+    <h1>Form list</h1>
+    <table border="2">
+      <tr>
+        <th>cid</th>
+        <th>name</th>
+        <th>desc</th>
+        <th>IMAGE</th>
+        <th>video</th>
+      </tr>
+      {% for i in res %}
+      <tr>
+        <td>{{i.cid}}</td>
+        <td>{{i.course_name}}</td>
+        <td>{{i.desc}}</td>
+        <td>{{i.image}}</td>
+        <td>
+          <iframe
+            width="250"
+            height="230"
+            src="{{i.file1}}"
+            title="#1 Python Tutorial for Beginners | Introduction to Python"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </td>
+        <td>
+          <a href="{% url 'teacher:update_course' pk=i.cid %}"
+            ><button>Update Course</button></a
+          >
+        </td>
+        <td>
+          <a href="{% url 'teacher:delete_course' pk=i.cid %}"
+            ><button>Delete Course</button></a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
+

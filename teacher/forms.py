@@ -1,5 +1,5 @@
 from django import forms
-from teacher.models import teacher_model,domain_model,course_model
+from teacher.models import teacher_model,domain_model,course_model,course_video_model
 from django.contrib.auth.hashers import make_password
 import re
 from django.contrib.auth.models import User
@@ -121,4 +121,9 @@ class domain_form(forms.ModelForm):
 class course_form(forms.ModelForm):
       class Meta:
         model = course_model
+        fields = "__all__"
+
+class video_form(forms.ModelForm):
+    class Meta:
+        model = course_video_model
         fields = "__all__"
