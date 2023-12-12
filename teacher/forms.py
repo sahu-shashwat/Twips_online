@@ -122,3 +122,5 @@ class course_form(forms.ModelForm):
       class Meta:
         model = course_model
         fields = "__all__"
+
+        
