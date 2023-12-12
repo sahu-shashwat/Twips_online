@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete</title>
+</head>
+<body>
+    <h1>Delete congermation page</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>are you sure to Delete Course</h2>
+        <h3>Course id: {{res.cid}}</h3>
+        <h3>Course name: {{res.course_name}}</h3>
+        <input type="submit" value="Delete">
+    </form>
+</body>
+</html>

@@ -91,8 +91,8 @@ def update_domain(request,pk):
 
 def register_course(request):
     form=course_form()
-    if request.method=='POST':
-        form=course_form(request.POST)
+    if request.method=='POST' and request.FILES:
+        form=course_form(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponse("course data saved")
@@ -102,11 +102,25 @@ def register_course(request):
 
 def update_course(request,pk):
     form=course_form(instance=course_model.objects.get(cid=pk))
-    if request.method=='POST':
-        form=course_form(request.POST,instance=course_model.objects.get(cid=pk))
+    if request.method=='POST' and request.FILES:
+        form=course_form(request.POST,request.FILES,instance=course_model.objects.get(cid=pk))
         if form.is_valid():
             form.save()
             return HttpResponse('course updated')
         else:
             return HttpResponse("data not updated")
     return render(request=request,template_name='update_course.html',context={'form':form})
+
+def delete_course(request,pk):
+    res=course_model.objects.get(cid=pk)
+    if request.method=='POST' :
+        res=course_model.objects.get(cid=pk).delete()
+        return HttpResponse("deteted")
+    return render(request=request,template_name='delete_course.html',context={'res':res})
+
+def delete_domain(request,pk):
+    res=domain_model.objects.get(did=pk)
+    if request.method=='POST':
+        res=domain_model.objects.get(did=pk).delete()
+        return HttpResponse("deteted")
+    return render(request=request,template_name='delete_domain.html',context={'res':res})

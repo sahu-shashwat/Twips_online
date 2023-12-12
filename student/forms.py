@@ -2,6 +2,8 @@ from django import forms
 from student.models import student_model
 from django.contrib.auth.hashers import make_password
 import re
+from django.contrib.auth.models import User
+
 
 class student_form(forms.ModelForm):
     confirm_password=forms.CharField(widget=forms.PasswordInput)

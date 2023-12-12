@@ -19,5 +19,5 @@ class course_model(models.Model):
      did=models.ForeignKey(domain_model, on_delete=models.CASCADE)
      cid=models.AutoField(primary_key=True)
      course_name=models.TextField(max_length=20)
-     desc=models.TextField(max_length=10)
+     desc=models.TextField(max_length=100)
      image=models.ImageField()
