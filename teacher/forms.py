@@ -101,21 +101,6 @@ class teacher_login_form(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
-    def clean(self):
-<<<<<<< HEAD
-        temp = User.objects.all().values_list("username")
-        # print(temp)
-        res = self.cleaned_data["username"]
-        if (res,) not in temp:
-            raise forms.ValidationError("User not found")
-=======
-        temp=User.objects.all().values_list('username')
-       
-        res=self.cleaned_data['username']
-        if(res,) not in temp:
-            raise forms.ValidationError('User not found')
->>>>>>> 61e9dfb914816e624ba730f3d0188074f0f1d02c
-
     def clean_username(self):
         username = self.cleaned_data["username"]
         if not (username[0].isupper()):
