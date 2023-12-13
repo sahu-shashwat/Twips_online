@@ -32,8 +32,6 @@ def student_view(request):
             return redirect('/student/otp')
     return render(request=request,template_name='student_register.html',context={'form':form})
 
-
-
 def otp_view(request):
     if request.method=='POST':
         if str(otp_confirm)==str(request.POST['otp']):
