@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-</head>
-<body>
+  </head>
+  <body>
+    {% if messages %} {% for i in messages %}
+    <h5>{{i}}</h5>
+    {% endfor %} {% endif %}
     <h1>Student Home Page</h1>
     <h2>Welcome to Home Page</h2>
     {{ user }}
     <a href="{% url 'student:logout' %}"><button>Logout</button></a>
     <a href="{% url 'student:all_course' %}"><button>All courses</button></a>
-
-</body>
-</html> 
+    <a href="{% url 'student:my_course'%}"><button>My courses</button></a>
+  </body>
+</html>

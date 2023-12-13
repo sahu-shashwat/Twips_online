@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>list</title>
+  </head>
+  <body>
+    {% if res %}
+        <table border="2">
+          <tr>
+            <th>cid</th>
+            <th>name</th>
+            <th>desc</th>
+            <th>IMAGE</th>
+          </tr>
+          {% for i in res %}
+          <tr>
+            <td>{{i.cid}}</td>
+            <td>{{i.course_name}}</td>
+            <td>{{i.desc}}</td>
+            <td>
+              <a href="{% url 'teacher:list_video' pk=i.cid %}"
+                ><img src="{{i.image.url}}" alt="" height="100" width="95"
+              /></a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+        {% else %}
+        <h1>Sorry you are not bougth any course</h1>
+        {% endif %}
+        <a href="{% url 'student:home' %}"><button>Home</button></a>
+      </body>
+    </html>
+  </body>
+</html>
