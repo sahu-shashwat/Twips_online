@@ -25,7 +25,7 @@ class domain_admin(admin.ModelAdmin):
 admin.site.register(domain_model,domain_admin)
 
 class course_admin(admin.ModelAdmin):
-    list_display=['cid','course_name','desc','pricr','image']
+    list_display=['cid','course_name','desc','price','image']
 admin.site.register(course_model,course_admin)
 
 
