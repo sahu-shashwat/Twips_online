@@ -7,6 +7,7 @@ from teacher.forms import (
     domain_form,
     course_form,
     video_form,
+    changepwd_form,
 )
 
 from django.contrib.auth.decorators import login_required
@@ -15,6 +16,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 import random
 from django.contrib import messages
+from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 
@@ -22,7 +24,7 @@ otp_confirm = None
 
 
 def teacher_view(request):
-    global otp_confirm
+
     form = teacher_form()
     if request.method == "POST":
         form = teacher_form(request.POST)
@@ -34,17 +36,10 @@ def teacher_view(request):
     )
 
 
-def teacher_otp_view(request):
-    if request.method == "POST":
-        if str(otp_confirm) == str(request.POST["otp"]):
-            return redirect("/teacher/login")
-        else:
-            return redirect("/teacher/register")
-    return render(request=request, template_name="teacher_otp.html")
 
 
 def teacher_login_view(request):
-    global otp_confirm
+   
     form = teacher_login_form()
     if request.method == "POST":
         form = teacher_login_form(request.POST)
@@ -203,3 +198,45 @@ def list_video(request,pk):
     return render(
         request=request, template_name="list_video.html", context={"res": res}
     )
+
+
+def forgot_pwd_view(request):
+    res=teacher_model.objects.all().values_list('email')
+    global otp_confirm
+    if request.method=='POST':
+        otp=random.randint(000000,999999)
+        otp_confirm=otp
+        email=request.POST['email']
+        if (email,) in res:
+            subject='Teacher Verification Code'
+            msg=f'''Dear User,
+                    Please enter this OTP {otp}.
+                    Thankyou...'''
+            send_mail(subject=subject,message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list=[email])
+            email_id=teacher_model.objects.get(email=email)
+            return redirect(f'/teacher/otp/{email_id.id}/')
+        else:
+            messages.error(request,"Email or OTP is incorrect.")       
+    return render(request=request,template_name='te_forgotten_pwd.html')
+
+
+
+def teacher_otp_view(request,pk):
+    if request.method=='POST':
+        if str(otp_confirm)==str(request.POST['otp']):
+            return redirect(f'/teacher/changepwd/{pk}/')
+        else:
+            return redirect('/teacher/forgotpwd')
+    return render(request=request,template_name='teacher_otp.html')
+
+
+def changepwd_view(request,pk):
+    form=changepwd_form()
+    if request.method=='POST':
+        res=teacher_model.objects.get(id=pk)
+        form=changepwd_form(request.POST)
+        if form.is_valid():
+            if form.cleaned_data['enter_new_password']==form.cleaned_data['re_enter_password']:
+                teacher_model.objects.filter(id=pk).update(password=make_password(form.cleaned_data['enter_new_password']))
+                return HttpResponse('Password is changed')
+    return render(request=request,template_name='createpwd.html',context={'form':form})

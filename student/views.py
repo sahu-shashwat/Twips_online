@@ -2,13 +2,14 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from student.models import student_model, buy_course_model
 from teacher.models import course_video_model, course_model
-from student.forms import student_form, student_login_form
+from student.forms import student_form, student_login_form,changepwd_form
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.core.mail import send_mail
 from django.conf import settings
 import random
 from django.contrib import messages
+from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 
@@ -28,14 +29,6 @@ def student_view(request):
         request=request, template_name="student_register.html", context={"form": form}
     )
 
-
-def otp_view(request):
-    if request.method == "POST":
-        if str(otp_confirm) == str(request.POST["otp"]):
-            return redirect("/student/login")
-        else:
-            return redirect("/student/register")
-    return render(request=request, template_name="st_otp.html")
 
 
 def student_login_view(request):
@@ -112,3 +105,44 @@ def my_course(request):
     return render(
         request=request, template_name="my_course.html", context={"res": temp}
     )
+
+
+def forgot_pwd_view(request):
+    res=student_model.objects.all().values_list('email')
+    global otp_confirm
+    if request.method=='POST':
+        otp=random.randint(000000,999999)
+        otp_confirm=otp
+        email=request.POST['email']
+        if (email,) in res:
+            subject='Student Verification Code'
+            msg=f'''Dear Student,
+                    Please enter this OTP {otp}.
+                    Thankyou...'''
+            send_mail(subject=subject,message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list=[email])
+            email_id=student_model.objects.get(email=email)
+            return redirect(f'/student/otp/{email_id.id}/')
+        else:
+            messages.error(request,"Email or OTP is incorrect.")       
+    return render(request=request,template_name='st_forgotten_pwd.html')
+
+def otp_view(request,pk):
+    if request.method=='POST':
+        if str(otp_confirm)==str(request.POST['otp']):
+            return redirect(f'/student/changepwd/{pk}/')
+        else:
+            return redirect('/student/forgotpwd')
+    return render(request=request,template_name='st_otp.html')
+
+
+
+def changepwd_view(request,pk):
+    form=changepwd_form()
+    if request.method=='POST':
+        res=student_model.objects.get(id=pk)
+        form=changepwd_form(request.POST)
+        if form.is_valid():
+            if form.cleaned_data['enter_new_password']==form.cleaned_data['re_enter_password']:
+                student_model.objects.filter(id=pk).update(password=make_password(form.cleaned_data['enter_new_password']))
+                return HttpResponse('Password is changed')
+    return render(request=request,template_name='createpwd.html',context={'form':form})
