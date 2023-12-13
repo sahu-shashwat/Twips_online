@@ -24,35 +24,35 @@ def student_view(request):
         if form.is_valid():
             form.save()
 
-            return redirect("/student/login")
+            return redirect("/teacher/login")
     return render(
         request=request, template_name="student_register.html", context={"form": form}
     )
 
 
 
-def student_login_view(request):
-    global otp_confirm
-    form = student_login_form()
-    if request.method == "POST":
-        form = student_login_form(request.POST)
-        if form.is_valid():
-            user = authenticate(
-                username=form.cleaned_data["username"],
-                password=form.cleaned_data["password"],
-            )
-            if user:
-                login(request, user)
-                return redirect("/student/home")
-            else:
-                messages.error(request, "Username or Password is incorrect")
-                return redirect("/student/login")
-    return render(
-        request=request, template_name="student_login.html", context={"form": form}
-    )
+# def student_login_view(request):
+#     global otp_confirm
+#     form = student_login_form()
+#     if request.method == "POST":
+#         form = student_login_form(request.POST)
+#         if form.is_valid():
+#             user = authenticate(
+#                 username=form.cleaned_data["username"],
+#                 password=form.cleaned_data["password"],
+#             )
+#             if user:
+#                 login(request, user)
+#                 return redirect("/student/home")
+#             else:
+#                 messages.error(request, "Username or Password is incorrect")
+#                 return redirect("/teacher/login")
+#     return render(
+#         request=request, template_name="student_login.html", context={"form": form}
+#     )
 
 
-@login_required(login_url="/student/login")
+@login_required(login_url="/teacher/login")
 def home_view(request):
     res = buy_course_model.objects.all()
     return render(
@@ -60,13 +60,13 @@ def home_view(request):
     )
 
 
-@login_required(login_url="/student/login")
+@login_required(login_url="/teacher/login")
 def logout_view(request):
     logout(request)
-    return redirect("/student/login")
+    return redirect("/teacher/login")
 
 
-@login_required(login_url="/student/login")
+@login_required(login_url="/teacher/login")
 def all_course(request):
     res = course_model.objects.all()
     return render(
@@ -74,7 +74,7 @@ def all_course(request):
     )
 
 
-@login_required(login_url="/student/login")
+@login_required(login_url="/teacher/login")
 def buy_course(request, pk):
     res = course_model.objects.get(cid=pk)
     if request.method == "POST":
@@ -93,7 +93,7 @@ def buy_course(request, pk):
     )
 
 
-@login_required(login_url="/student/login")
+@login_required(login_url="/teacher/login")
 def my_course(request):
     res = [
         i[0]

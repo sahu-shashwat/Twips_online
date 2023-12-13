@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register Page</title>
-</head>
-<body>
-  
-
+  </head>
+  <body>
     <h1>Student Register Page</h1>
     <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-            {{form.as_p}}
-        <input type="submit" value="Register">
+      {% csrf_token %} {{form.as_p}}
+      <input type="submit" value="Register" />
     </form>
     <h2>Already User?</h2>
-    <a href="{% url 'student:login' %}"><button>Login Page</button></a>
-    <h1> hello</h1>   
-</body>
+    <a href="{% url 'teacher:login' %}"><button>Login Page</button></a>
+    <h1>hello</h1>
+  </body>
 </html>
