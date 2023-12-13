@@ -28,22 +28,7 @@ def teacher_view(request):
         form = teacher_form(request.POST)
         if form.is_valid():
             form.save()
-            otp = random.randint(000000, 999999)
-            otp_confirm = otp
-            email = form.cleaned_data["email"]
-            subject = "Teacher Verification Code"
-            msg = f"""Dear User,
-                    Please enter this OTP {otp}.
-                    Thankyou..."""
-            send_mail(
-                subject=subject,
-                message=msg,
-                from_email=settings.EMAIL_HOST_USER,
-                recipient_list=[
-                    email,
-                ],
-            )
-            return redirect("/teacher/otp")
+            return redirect("/teacher/login")
     return render(
         request=request, template_name="teacher_register.html", context={"form": form}
     )
