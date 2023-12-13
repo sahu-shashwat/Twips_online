@@ -27,9 +27,8 @@ class student_model(User):
         choices=[["Male", "Male"], ["Female", "Female"], ["Others", "Others"]],
     )
 
-
 class buy_course_model(models.Model):
-    order_id = models.AutoField(primary_key=True)
-    sid = models.CharField(max_length=30)
-    course_id = models.PositiveIntegerField(max_length=50)
-    bought_date = models.DateField(auto_now=True)
+    oid = models.AutoField(primary_key=True)
+    stud_id = models.PositiveBigIntegerField()
+    course_id = models.PositiveBigIntegerField()
+    bougth_date = models.DateTimeField(auto_now=True)

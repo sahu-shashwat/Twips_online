@@ -10,5 +10,5 @@ urlpatterns = [
     path(route='home/',view=home_view,name='home'),
     path(route='logout/',view=logout_view,name='logout'),
     path(route='all_course/',view=all_course,name='all_course'),
-    path(route='buy_course/<int:pk>',view=buy_course,name='buy_course'),
+    path(route='buy_course/<int:pk>/',view=buy_course,name='buy_course'),
 ]
