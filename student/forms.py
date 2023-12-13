@@ -3,6 +3,7 @@ from student.models import student_model
 from django.contrib.auth.hashers import make_password
 import re
 from django.contrib.auth.models import User
+from student.validators import clean_enter_new_password
 
 
 class student_form(forms.ModelForm):
@@ -146,3 +147,26 @@ class student_login_form(forms.Form):
         res = self.cleaned_data["username"]
         if (res,) not in temp:
             raise forms.ValidationError("User not found")
+        
+
+class changepwd_form(forms.Form):
+    enter_new_password=forms.CharField(widget=forms.PasswordInput,validators=[clean_enter_new_password,])
+    re_enter_password=forms.CharField(widget=forms.PasswordInput)
+
+    def clean_re_enter_password(self):
+        paswd=self.cleaned_data['re_enter_password']
+        if not(paswd[0].isupper()):
+            raise forms.ValidationError('Re enter password should starts with uppercase')
+        if len(paswd)<5:
+            raise forms.ValidationError('Re enter password should greater than 5 charecters')
+        if len(paswd)>15:
+            raise forms.ValidationError('Re enter password should less than 15 charecters')
+        if len(re.findall('[0-9]',paswd))==0:
+            raise forms.ValidationError('Re enter password should contains atleast one number')
+        if len(re.findall('[a-z]',paswd))==0:
+            raise forms.ValidationError('Re enter password should contains atleast one lowercase')
+        if len(re.findall('[^a-z A-z 0-9]',paswd))==0:
+            raise forms.ValidationError('Re enter password should contains atleast one special charecter')
+        if self.cleaned_data['enter_new_password']!=paswd:
+            raise forms.ValidationError('New password and re-entered password should be same as password')
+        return paswd
