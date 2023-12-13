@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>list</title>
+  </head>
+  <body>
+    <h1>Video list</h1>
+    <table border="2">
+      <tr>
+        <th>vid</th>
+        <th>Title</th>
+        <th>video </th>
+      </tr>
+      {% for i in res %}
+      <tr>
+        <td>{{i.vid}}</td>
+        <td>{{i.v_title}}</td>
+        <td>
+          <iframe
+            width="250"
+            height="230"
+            src="{{i.v_text}}"
+            title="#1 Python Tutorial for Beginners | Introduction to Python"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </td>
+        <td>
+          <a href="{% url 'teacher:update_video' pk=i.vid %}"
+            ><button>Update Course</button></a
+          >
+        </td>
+        <td>
+          <a href="{% url 'teacher:delete_video' pk=i.vid %}"
+            ><button>Delete Course</button></a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
+
