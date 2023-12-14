@@ -6,6 +6,18 @@
     <title>Home</title>
 </head>
 <body>
+    <div class="" id="pContainer">
+        <section class="pContainerChildren" id="pContainerChild1">
+            <img id="project_brand_logo" src="./project_brand__logo.png" alt="project_brand__logo">
+            <h1 class="" id="project_brand_text"><span class="orangeColorSpans">J</span>SP<span class="orangeColorSpans">-O</span>nline <span class="orangeColorSpans">C</span>ourse</h1>
+        </section>
+        <section class="pContainerChildren" id="pContainerChild2"></section>
+        <section class="pContainerChildren" id="pContainerChild3">
+            <h1 class="" id="continueAsText">CONTINUE AS</h1>
+            <button class="continueAsButtons" id="teacherButton">TEACHER</button>
+            <button class="continueAsButtons" id="studentButton">STUDENT</button>
+        </section>
+    </div>
     <h1>Hyy Wellcome to Twips</h1>
     <a href="{% url 'teacher:register' %}"><button>Teacher Registration</button></a>
     <a href="{% url 'student:register' %}"><button>Student Registration</button></a>
