@@ -4,23 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    {% load static %}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/mainhome.css' %}">
 </head>
 <body>
     <div class="" id="pContainer">
         <section class="pContainerChildren" id="pContainerChild1">
-            <img id="project_brand_logo" src="./project_brand__logo.png" alt="project_brand__logo">
-            <h1 class="" id="project_brand_text"><span class="orangeColorSpans">J</span>SP<span class="orangeColorSpans">-O</span>nline <span class="orangeColorSpans">C</span>ourse</h1>
+            <img id="project_brand_logo" src="{% static 'images/py_image-removebg-preview.png' %}" alt="">
+            <h1 class="" id="project_brand_text"><span class="orangeColorSpans">P</span>SP<span class="orangeColorSpans">-O</span>nline <span class="orangeColorSpans">C</span>ourse</h1>
         </section>
         <section class="pContainerChildren" id="pContainerChild2"></section>
         <section class="pContainerChildren" id="pContainerChild3">
             <h1 class="" id="continueAsText">CONTINUE AS</h1>
-            <button class="continueAsButtons" id="teacherButton">TEACHER</button>
-            <button class="continueAsButtons" id="studentButton">STUDENT</button>
+            <button class="continueAsButtons" id="teacherButton"><a class="continueAsA" id="teachera" href="{% url 'teacher:register' %}">TEACHER</a></button>
+            <button class="continueAsButtons" id="studentButton"><a class="continueAsA" id="teachera" href="{% url 'student:register' %}">STUDENT</a></button>
+            <button class="continueAsButtons" id="studentButton"><a class="continueAsA" id="teachera" href="{% url 'teacher:login' %}">LOG IN</a></button>
         </section>
     </div>
-    <h1>Hyy Wellcome to Twips</h1>
-    <a href="{% url 'teacher:register' %}"><button>Teacher Registration</button></a>
-    <a href="{% url 'student:register' %}"><button>Student Registration</button></a>
-    <a href="{% url 'teacher:login' %}"><button>login</button></a>
+    <!-- <h1>Hyy Wellcome to Twips</h1>
+    <button>Teacher Registration</button></a>
+    <button>Student Registration</button></a>
+    <button>login</button></a> -->
 </body>
 </html>

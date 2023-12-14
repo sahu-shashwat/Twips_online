@@ -9,6 +9,7 @@ from student.views import (
     my_course,
     forgot_pwd_view,
     changepwd_view,
+    
 )
 
 app_name = "student"
