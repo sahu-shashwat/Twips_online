@@ -1,0 +1,69 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#pContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background-color: dimgray; */
+    background-image: url("{% static 'images/Online_Course_bg_image.png' %}");
+    /* background-image: url(./Online_Course_bg_image.png); */
+    background-size: 100% 100vh;
+}
+.pContainerChildren{
+    display: flex;
+    flex-basis: 49.98%;
+}
+#pContainerChild2{
+    flex-basis: 0%;
+    border: 1px solid white;
+    box-shadow:2px 0px 0px orangered,-2px 0px 0px red;
+    height: 80%;
+}
+#project_brand_logo{
+    height: 42vh;
+
+}
+#pContainerChild1{
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#project_brand_text{
+    margin-top: -3%;
+    font-size:50px;
+    letter-spacing: 3px;
+    color: rgb(0, 255, 0);
+    text-shadow: 3px 3px 7px black;
+    font-family: 'Lato', sans-serif;
+}
+.orangeColorSpans{
+    color: rgb(255, 0, 0);
+}
+#continueAsText{
+    font-size: 70px;
+    color:rgb(0, 255, 0) ;
+    text-shadow: 3px 3px 7px black; 
+    font-family: 'Lexend', sans-serif;
+}
+#pContainerChild3{
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.continueAsButtons{
+    font-size: xx-large;
+    margin-top: 3%;
+    padding: 1.5%;
+    border-radius: 10px;
+    background-color: rgb(237, 86, 86);
+    color: white;
+    font-family: 'Lexend', sans-serif;
+}
+.continueAsA
+{
+    text-decoration: none;
+    color: white;
+}
