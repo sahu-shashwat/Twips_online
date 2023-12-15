@@ -31,25 +31,26 @@ def student_view(request):
 
 
 
-# def student_login_view(request):
-#     global otp_confirm
-#     form = student_login_form()
-#     if request.method == "POST":
-#         form = student_login_form(request.POST)
-#         if form.is_valid():
-#             user = authenticate(
-#                 username=form.cleaned_data["username"],
-#                 password=form.cleaned_data["password"],
-#             )
-#             if user:
-#                 login(request, user)
-#                 return redirect("/student/home")
-#             else:
-#                 messages.error(request, "Username or Password is incorrect")
-#                 return redirect("/teacher/login")
-#     return render(
-#         request=request, template_name="student_login.html", context={"form": form}
-#     )
+def student_login_view(request):
+    global otp_confirm
+    form = student_login_form()
+    
+    if request.method == "POST":
+        form = student_login_form(request.POST)
+        if form.is_valid():
+            user = authenticate(
+                username=form.cleaned_data["username"],
+                password=form.cleaned_data["password"],
+            )
+            if user:
+                login(request, user)
+                return redirect("/student/home")
+            else:
+                messages.error(request, "Username or Password is incorrect")
+                return redirect("/teacher/login")
+    return render(
+        request=request, template_name="student_login.html", context={"form": form}
+    )
 
 
 @login_required(login_url="/teacher/login")

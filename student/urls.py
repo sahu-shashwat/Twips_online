@@ -9,7 +9,7 @@ from student.views import (
     my_course,
     forgot_pwd_view,
     changepwd_view,
-    
+    student_login_view,
 )
 
 app_name = "student"
@@ -17,7 +17,7 @@ app_name = "student"
 urlpatterns = [
     path(route="register/", view=student_view, name="register"),
     path(route="otp/<int:pk>/", view=otp_view, name="otp"),
-    # path(route="login/", view=student_login_view, name="login"),
+    path(route="login/", view=student_login_view, name="login"),
     path(route="home/", view=home_view, name="home"),
     path(route="logout/", view=logout_view, name="logout"),
     path(route="all_course/", view=all_course, name="all_course"),

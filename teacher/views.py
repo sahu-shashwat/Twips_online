@@ -47,11 +47,11 @@ def teacher_login_view(request):
             if user:
                 if user.is_staff:
                     login(request, user)
-                    messages.success(request, f"welcome to teacher login Mr/Ms {user}")
+                    # messages.success(request, f"welcome to teacher login Mr/Ms {user}")
                     return redirect("/teacher/home")
                 else:
                     login(request, user)
-                    messages.success(request, f"welcome to Student login Mr/Ms {user}")
+                    # messages.success(request, f"welcome to Student login Mr/Ms {user}")
                     return redirect("/student/home")
 
             else:

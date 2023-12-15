@@ -2,13 +2,14 @@
     margin: 0;
     padding: 0;
 }
+
 #pContainer{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    /* background-color: dimgray; */
-    background-image: url("{% static 'images/Online_Course_bg_image.png' %}");
+    background-color: dimgray;
+    /* background-image: url("{% static 'images/Online_Course_bg_image.png' %}"); */
     /* background-image: url(./Online_Course_bg_image.png); */
     background-size: 100% 100vh;
 }

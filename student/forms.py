@@ -141,7 +141,7 @@ class student_login_form(forms.Form):
         return pwd
 
     def clean(self):
-        print(self.__dict__)
+        # print(self.__dict__)
         temp = User.objects.all().values_list("username")
         # print(temp)
         res = self.cleaned_data["username"]
