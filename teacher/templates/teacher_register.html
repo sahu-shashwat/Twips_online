@@ -24,6 +24,7 @@
             margin-top: -80px;
             /* max-width: 1350px; */
             padding-bottom: 0px;
+
         }
 
         ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -53,7 +54,7 @@
         h1{
             color:white!important;
         }
-        h4 { 
+        h4{ 
         border:0 solid #fff; 
         border-bottom-width:1px;
         padding-bottom:10px;
@@ -62,10 +63,20 @@
 
         .form-control {
             border-radius: 10px;
+            box-shadow: 10px 10px 2px #444444;
+            
+            
+        }
+        .btn{
+            box-shadow: 3px 3px 1px black;
+        }
+        .btn:hover
+        {
+            transform: scale(1.05);
         }
         .text-white{
             color: white!important;
-            margin-right: -200px;
+            margin-right: -170px;
             /* margin-left: 370px; */
         }
         .wrapper {
@@ -94,33 +105,22 @@
                 <div class="form-login"></br>
                     <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                    <h4>Secure Login</h4>
-                    <!-- </br>
-                    <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="username"/>
-                    </br></br>
-                    <input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="password"/>
-                    </br></br> -->
-                    
-                        {{form}}
+                    <h4>Secure Login</h4>                   
+                     {{form}}
                     <div class="wrapper">
-                            <span class="group-btn">
-                                <a href="#" class="btn btn-danger btn-md">register <i class="fa fa-sign-in"></i></a>
-                            </span>
-                            
+                        <span class="group-btn">
+                            <input type="submit" class="btn btn-danger btn-md" value="Register">
+                        </span>                           
                     </div>
-                    </form>
+                    </form>                   
                     <span>
-                        <a href="{% url 'teacher:login' %}" ><button class="btn btn-danger btn-md">Login Page</button></a>
+                        <a href="{% url 'teacher:login' %}" ><button class="btn btn-danger btn-md">Already User?</button></a>
                     </span>
                 </div>
             </div>
         </div>
-        </br></br></br>
-        <!--footer-->
-        <!-- <div class="footer text-white text-center">
-            <p>© 2020 Unique Login Form. All rights reserved | Design by <a href="https://freecss.tech">Free Css</a></p>
-        </div> -->
-        <!--//footer-->
+        <br>
+        <!-- </br></br></br> -->
     </div>
 </body>
 </html>

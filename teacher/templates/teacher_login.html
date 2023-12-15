@@ -71,35 +71,24 @@
         .main-div
         {
             box-shadow: 10px 10px 2px #444444;
+            border-radius: 10px;
         }
-        /* ::marker {
-        unicode-bidi: isolate;
-        font-variant-numeric: tabular-nums;
-        text-transform: none;
-        text-indent: 0px !important;
-        text-align: start !important;
-        text-align-last: start !important;
+        .btn,#regbtn
+        {
+            box-shadow: 3px 3px 1px #111111;
         }
-dl, ol, ul {
-    margin-top: 0;
-    margin-bottom: 1rem;
-}
-ul {
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-}
-li {
-    display: list-item;
-    text-align: -webkit-match-parent;
-}
-ul {
-    list-style-type: disc;
-} */
+        #regbtn:hover
+        {
+            transform: scale(1.05);
+        }
+        .btn:hover
+        {
+            transform: scale(1.05);
+        }
+        #regbtn
+        {
+            margin-top: 20px;
+        }
     </style>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -110,30 +99,28 @@ ul {
     <div class="container">
         <h1 class="form-heading">Login Form</h1>
         <div class="login-form">
-        <div class="main-div">
-            <div class="panel">
-           <h1>Login Page</h1>
-           <p>Please enter your username and password</p>
-           </div class="formcontainer">
-            {% for i in messages %}
-            <h3>{{i}}</h3>
-            {% endfor %}
-            <form id="Login" action="" method="post">
-                {% csrf_token %}
-                <!-- <ul class="errorlist nonfield"><li>User not found</li></ul> -->
-               {{form}}
-                <div class="forgot">
-                    <a href="{% url 'teacher:forgotpwd' %}">Forgot Password?</a>
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-        
-            </form>
-                    <h4 id="user">New User?</h4>
-                    <a href="{% url 'teacher:register' %}"><button id="regbtn">Register Page</button></a>
-                
+            <div class="main-div">
+                <div class="panel">
+                    <h1>Login Page</h1>
+                    <p>Please enter your username and password</p>
+                </div class="formcontainer">
+                        {% for i in messages %}
+                        <h5>{{i}}</h5>
+                        {% endfor %}
+                <form id="Login" action="" method="post">
+                    {% csrf_token %}
+                    {{form}}
+                    <div class="forgot">
+                        <a href="{% url 'teacher:forgotpwd' %}">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>               
+                </form>
+                <div class="regb">
+                    <a href="{% url 'Home_Page' %}"><button id="regbtn">New User?</button></a>
+                </div>    
             </div>
-        <!-- <p class="botto-text"> Designed by Sunil Rajput</p> -->
-        </div></div></div>
+        </div>
+    </div>
         
     <!-- <h1>Student Login Page</h1>
     {% for i in messages %}
