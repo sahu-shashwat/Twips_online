@@ -64,6 +64,7 @@
             flex-direction: column;
         }
         .continueAsButtons{
+            box-shadow: 3px 3px 1px #444444;
             height: 50px;
             font-size: xx-large;
             margin-top: 3%;
@@ -72,11 +73,31 @@
             background-color: rgb(237, 86, 86);
             color: white;
             font-family: 'Lexend', sans-serif;
+            border: solid 1px rgb(237, 86, 86);
         }
         .continueAsA
         {
+            /* margin: 0px 10px; */
             text-decoration: none;
             color: white;
+
+        }
+        .twobuttons{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #teacherButton
+        {
+            margin-right: 20px;
+        }
+        #studentButtton
+        {
+            margin-left: 20px;
+        }
+        .continueAsButtons:hover
+        {
+            transform: scale(1.05);
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -104,9 +125,11 @@
         <section class="pContainerChildren" id="pContainerChild2"></section>
         <section class="pContainerChildren" id="pContainerChild3">
             <h1 class="" id="continueAsText">CONTINUE AS</h1>
-            <button class="continueAsButtons" id="teacherButton"><a class="continueAsA" id="teachera" href="{% url 'teacher:register' %}">TEACHER</a></button>
-            <button class="continueAsButtons" id="studentButton"><a class="continueAsA" id="teachera" href="{% url 'student:register' %}">STUDENT</a></button>
-            <button class="continueAsButtons" id="studentButton"><a class="continueAsA" id="teachera" href="{% url 'teacher:login' %}">LOG IN</a></button>
+            <div class="twobuttons">
+                <button class="continueAsButtons" id="teacherButton"><a class="continueAsA" id="teachera" href="{% url 'teacher:register' %}">TEACHER</a></button>
+                <button class="continueAsButtons" id="studentButton"><a class="continueAsA" id="studenta" href="{% url 'student:register' %}">STUDENT</a></button>
+            </div>
+            <button class="continueAsButtons" id="loginButton"><a class="continueAsA" id="logina" href="{% url 'teacher:login' %}">LOG IN</a></button>
         </section>
     </div>
     <!-- <h1>Hyy Wellcome to Twips</h1>
