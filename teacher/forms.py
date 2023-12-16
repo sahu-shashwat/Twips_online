@@ -151,9 +151,6 @@ class course_form(forms.ModelForm):
         model = course_model
         fields = "__all__"
 
-<<<<<<< HEAD
-        
-=======
 
 class video_form(forms.ModelForm):
     class Meta:
@@ -201,4 +198,4 @@ class changepwd_form(forms.Form):
                 "New password and re-entered password should be same as password"
             )
         return paswd
->>>>>>> 2ebe102c4a5352927d25a6e17134a39c7a6dd01f
+
