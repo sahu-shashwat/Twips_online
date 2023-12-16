@@ -34,6 +34,7 @@ def student_view(request):
 # def student_login_view(request):
 #     global otp_confirm
 #     form = student_login_form()
+    
 #     if request.method == "POST":
 #         form = student_login_form(request.POST)
 #         if form.is_valid():

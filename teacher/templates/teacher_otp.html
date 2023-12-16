@@ -4,18 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verification</title>
+    <!-- <style>
+        .left
+        {
+            width: 50%;
+            
+            float: left;
+            /* background-color: orange; */
+        }
+        .right
+        {
+            width: 50%;
+            height: 98vh;
+            float: right;
+            background-color: orange;
+        }
+        .h11
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .lh1
+        {
+            background-color: orange;
+            /* margin-right: 10px; */
+        }
+        .rh1
+        {
+            background-color: white;
+            /* margin-left: 20px; */
+        }
+    </style> -->
 </head>
 <body>
-    <h1>OTP Verification</h1>
+    <!-- <div class="h11">
+        <h1 class="lh1">OTP</h1>
+        <h1 class="rh1">Verification</h1>
+    </div> -->
     <form action="" method="post">
         {% csrf_token %}
-        <table>
-            <tr>
-                <th><label for="id_otp">OTP:</label></th>
-                <th><input type="number" max="999999" name="otp" id="id_otp"></th>
-            </tr>
-        </table>
-        <input type="submit" value="Verify">
+        <div class="left">
+            <h1 class="lh1">OTP</h1>
+            <label for="id_otp">OTP:</label>
+        </div>
+        <div class="right">
+            <h1 class="rh1">Verification</h1>
+            <input type="number" max="999999" name="otp" id="id_otp"><br>
+            <input type="submit" value="Verify">
+        </div>
     </form>
 </body>
 </html>

@@ -68,6 +68,34 @@
             height: 40px;
             width: 150px;
         }
+        ::marker {
+        unicode-bidi: isolate;
+        font-variant-numeric: tabular-nums;
+        text-transform: none;
+        text-indent: 0px !important;
+        text-align: start !important;
+        text-align-last: start !important;
+        }
+dl, ol, ul {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+ul {
+    list-style-type: disc;
+}
     </style>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -83,12 +111,12 @@
            <h1>Student Login</h1>
            <p>Please enter your username and password</p>
            </div>
-            
-                {% for i in messages %}
-                <h3>{{i}}</h3>
-                {% endfor %}
+            {% for i in messages %}
+            <h3>{{i}}</h3>
+            {% endfor %}
             <form id="Login" action="" method="post">
                 {% csrf_token %}
+                <ul class="errorlist nonfield"><li>User not found</li></ul>
                 <div class="form-group">            
                     <input type="text" name="username" class="form-control" id="id_username" required placeholder="Username" >
         

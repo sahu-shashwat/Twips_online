@@ -100,8 +100,8 @@ class teacher_form(forms.ModelForm):
 
 
 class teacher_login_form(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
 
     def clean_username(self):
         username = self.cleaned_data["username"]
@@ -134,9 +134,7 @@ class teacher_login_form(forms.Form):
         return pwd
 
     def clean(self):
-        print(self.__dict__)
         temp = User.objects.all().values_list("username")
-        # print(temp)
         res = self.cleaned_data["username"]
         if (res,) not in temp:
             raise forms.ValidationError("User not found")

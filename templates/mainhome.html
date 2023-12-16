@@ -6,6 +6,100 @@
     <title>Home</title>
     {% load static %}
 
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        #pContainer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* background-color: dimgray; */
+            background-image: url("{% static 'images/Online_Course_bg_image.png' %}");
+            /* background-image: url(./Online_Course_bg_image.png); */
+            background-size: 100% 100vh;
+        }
+        .pContainerChildren{
+            display: flex;
+            flex-basis: 49.98%;
+        }
+        #pContainerChild2{
+            flex-basis: 0%;
+            border: 1px solid white;
+            box-shadow:2px 0px 0px orangered,-2px 0px 0px red;
+            height: 80%;
+        }
+        #project_brand_logo{
+            height: 42vh;
+
+        }
+        #pContainerChild1{
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #project_brand_text{
+            margin-top: -3%;
+            font-size:50px;
+            letter-spacing: 3px;
+            color: rgb(0, 255, 0);
+            text-shadow: 3px 3px 7px black;
+            font-family: 'Lato', sans-serif;
+        }
+        .orangeColorSpans{
+            color: rgb(255, 0, 0);
+        }
+        #continueAsText{
+            font-size: 70px;
+            color:rgb(0, 255, 0) ;
+            text-shadow: 3px 3px 7px black; 
+            font-family: 'Lexend', sans-serif;
+        }
+        #pContainerChild3{
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .continueAsButtons{
+            box-shadow: 3px 3px 1px #444444;
+            height: 50px;
+            font-size: xx-large;
+            margin-top: 3%;
+            padding: 0% 1.5%;
+            border-radius: 10px;
+            background-color: rgb(237, 86, 86);
+            color: white;
+            font-family: 'Lexend', sans-serif;
+            border: solid 1px rgb(237, 86, 86);
+        }
+        .continueAsA
+        {
+            /* margin: 0px 10px; */
+            text-decoration: none;
+            color: white;
+
+        }
+        .twobuttons{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #teacherButton
+        {
+            margin-right: 20px;
+        }
+        #studentButtton
+        {
+            margin-left: 20px;
+        }
+        .continueAsButtons:hover
+        {
+            transform: scale(1.05);
+        }
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
@@ -14,15 +108,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{% static 'css/mainhome.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/mainhome.css' %}"> -->
 </head>
 <body>
-<<<<<<< HEAD
-    <h1>Hyy Wellcome to Online Course</h1>
+
+    <!-- <h1>Hyy Wellcome to Online Course</h1>
     <a href="{% url 'teacher:register' %}"><button>Teacher Registration</button></a>
     <a href="{% url 'student:register' %}"><button>Student Registration</button></a>
-    <a href="{% url 'teacher:login' %}"><button>login</button></a>
-=======
+    <a href="{% url 'teacher:login' %}"><button>login</button></a>  -->
+
     <div class="" id="pContainer">
         <section class="pContainerChildren" id="pContainerChild1">
             <img id="project_brand_logo" src="{% static 'images/py_image-removebg-preview.png' %}" alt="">
@@ -31,15 +125,17 @@
         <section class="pContainerChildren" id="pContainerChild2"></section>
         <section class="pContainerChildren" id="pContainerChild3">
             <h1 class="" id="continueAsText">CONTINUE AS</h1>
-            <button class="continueAsButtons" id="teacherButton"><a class="continueAsA" id="teachera" href="{% url 'teacher:register' %}">TEACHER</a></button>
-            <button class="continueAsButtons" id="studentButton"><a class="continueAsA" id="teachera" href="{% url 'student:register' %}">STUDENT</a></button>
-            <button class="continueAsButtons" id="studentButton"><a class="continueAsA" id="teachera" href="{% url 'teacher:login' %}">LOG IN</a></button>
+            <div class="twobuttons">
+                <button class="continueAsButtons" id="teacherButton"><a class="continueAsA" id="teachera" href="{% url 'teacher:register' %}">TEACHER</a></button>
+                <button class="continueAsButtons" id="studentButton"><a class="continueAsA" id="studenta" href="{% url 'student:register' %}">STUDENT</a></button>
+            </div>
+            <button class="continueAsButtons" id="loginButton"><a class="continueAsA" id="logina" href="{% url 'teacher:login' %}">LOG IN</a></button>
         </section>
     </div>
     <!-- <h1>Hyy Wellcome to Twips</h1>
     <button>Teacher Registration</button></a>
     <button>Student Registration</button></a>
     <button>login</button></a> -->
->>>>>>> caf15b66e7204af11e5d22fd9291f19b9e9eb013
+
 </body>
 </html>
