@@ -205,6 +205,7 @@ def list_video(request, pk):
 
 def forgot_pwd_view(request):
     res = teacher_model.objects.all().values_list("email")
+    
     global otp_confirm
     if request.method == "POST":
         otp = random.randint(000000, 999999)
