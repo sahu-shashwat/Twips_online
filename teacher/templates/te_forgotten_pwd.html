@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgotten Password</title>
+    <style>
+        .upper
+        {
+            background-color: orange;
+            height: 50vh;
+            text-align: center;
+        }
+        .down
+        {
+            position: relative;
+            top: 12px;      
+            text-align: center;
+        }
+        .updown
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 48vh;
+            left: 42%;
+        }
+    </style>
+</head>
+<body>
+   
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="upper">
+            <h1>Forgotten Password Page</h1>
+            <div class="updown">
+                <label for="id_mail">Email:</label>
+                <input type="email" name="email" id="id_mail">
+            </div>
+        </div>
+        <div class="down">
+            <input  type="submit" value="Sent OTP">
+        </div>
+    </form>
+</body>
+</html>

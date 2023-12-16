@@ -16,11 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from project1.views import main_home_view
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path(route='',view=main_home_view,name='Home_Page'),
     path(route='student/',view=include('student.urls'),name='student'),
     path(route='teacher/',view=include('teacher.urls'),name='teacher'),
 ]
@@ -28,5 +30,5 @@ urlpatterns = [
 
 
 if settings.DEBUG:
-    urlpatterns+=static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
+    # urlpatterns+=static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
     urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

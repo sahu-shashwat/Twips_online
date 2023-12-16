@@ -10,5 +10,9 @@
     <h2>Welcome to Home Page</h2>
     {{ user }}
     <a href="{% url 'teacher:logout' %}"><button>Logout</button></a>
+    <a href="{% url 'teacher:register_course' %}"><button>Register Course</button></a>
+    <a href="{% url 'teacher:register_domain' %}"><button>Register Domain</button></a>
+    <a href="{% url 'teacher:register_video' %}"><button>Register video</button></a>
+    <a href="{% url 'teacher:list_course' %}"><button>Uploaded Course</button></a>
 </body>
 </html> 
