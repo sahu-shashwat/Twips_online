@@ -4,16 +4,266 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
+    {% load static %}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bacasime+Antique&family=Bree+Serif&family=Playfair+Display:ital@1&family=Poppins:wght@100;200;300;400;600;700&family=Roboto:wght@900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Bacasime Antique", serif;
+        font-family: "Playfair Display", serif;
+        font-family: "Poppins", sans-serif;
+        /* font-family: 'Roboto', sans-serif; */
+        /* font-family: 'Bree Serif', serif; */
+      }
+      .header {
+        min-height: 100vh;
+        width: 100%;
+        background-image: url(https://cdn.pixabay.com/photo/2017/08/01/00/16/apple-2562204_1280.jpg);
+        background-position: center;
+        background-size: cover;
+        position: relative;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2% 6%;
+      }
+      nav img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .nav-links {
+        text-align: right;
+        flex: 1;
+        padding-bottom: 60px;
+      }
+      .nav-links ul li {
+        list-style: none;
+        display: inline-block;
+        position: relative;
+        padding: 4px 12px;
+      }
+
+      .nav-links ul li a {
+        color: aliceblue;
+        text-decoration: none;
+        font-size: 16px;
+      }
+
+      .nav-links ul li::after {
+        content: "";
+        width: 0px;
+        height: 2px;
+        background: #f44336;
+        display: block;
+        margin: auto;
+        transition: 0.5s;
+      }
+      .nav-links .activate::after {
+        content: "";
+        width: 100%;
+        height: 2px;
+        background: #f44336;
+        display: block;
+        margin: auto;
+      }
+
+      .nav-links ul :hover:after {
+        width: 100%;
+      }
+      .text-box {
+        width: 90%;
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+      .text-box h1 {
+        font-size: 50px;
+      }
+      .text-box p {
+        margin: 10px 0 40px;
+        font-size: 14px;
+        color: #fff;
+      }
+      .text-box a {
+        font-size: 13px;
+      }
+      .hero-btn {
+        display: inline-block;
+        text-decoration: none;
+        color: #fff;
+        border: 1.5px solid #fff;
+        padding: 12px 34px;
+        font-size: 13px;
+        background: transparent;
+        position: relative;
+        cursor: pointer;
+      }
+
+      .hero-btn:hover {
+        border: 1px solid #f44336;
+        background: #f44336;
+        transition: 1s;
+      }
+
+      /* course */
+      .courses {
+        width: 80%;
+        text-align: center;
+        margin: auto;
+        padding-top: 100px;
+      }
+      .courses h1 {
+        font-size: 36px;
+        font-weight: 700;
+      }
+      .courses p {
+        color: #777;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 22px;
+        padding: 10px;
+      }
+      .row {
+        margin-top: 5%;
+        display: flex;
+        justify-content: space-between;
+      }
+      .course-col {
+        flex-basis: 31%;
+        background: #fff3f3;
+        border-radius: 10px;
+        margin-bottom: 5%;
+        padding: 20px 12px;
+        box-sizing: border-box;
+        transition: 0.5s;
+        box-shadow: 0 0 8px 0px;
+      }
+      .course-col h1 {
+        text-align: center;
+        font-weight: 600;
+        margin: 14px 0;
+      }
+      .course-col:hover {
+        box-shadow: 0 0 20px 0px;
+      }
+      .footer {
+        width: 100%;
+        text-align: center;
+        padding: 30px 0;
+      }
+      .footer h4 {
+        margin-bottom: 25px;
+        margin-top: 20px;
+        font-weight: 600;
+      }
+      .icons .bx {
+        justify-content: center;
+        align-items: center;
+        width: 2.6rem;
+        height: 2.6rem;
+        background: transparent;
+        border: 0.2rem solid #f44336;
+        border-radius: 50%;
+        color: #f44336;
+        font-size: 1.6rem;
+        text-decoration: none;
+        margin: 2rem 1.5rem 1rem 0;
+        transition: 0.4s ease;
+        display: inline-flex;
+      }
+      .icons .bx:hover {
+        background: #f44336;
+        color: #a40f04;
+        box-shadow: 0 0 1rem #f13427;
+      }
+    </style>
   </head>
   <body>
     {% if messages %} {% for i in messages %}
     <h5>{{i}}</h5>
     {% endfor %} {% endif %}
-    <h1>Student Home Page</h1>
-    <h2>Welcome to Home Page</h2>
-    {{ user }}
-    <a href="{% url 'student:logout' %}"><button>Logout</button></a>
-    <a href="{% url 'student:all_course' %}"><button>All courses</button></a>
-    <a href="{% url 'student:my_course'%}"><button>My courses</button></a>
+    <section class="header">
+      <nav>
+      <img src="{% static 'images/logo2.png' %}" alt="" />
+        <div class="nav-links">
+          <ul>
+            <li class="activate"><a href="">Home</a></li>
+            <li><a href="{% url 'student:all_course' %}">All Courses</a></li>
+            <li><a href="{% url 'student:my_course'%}">My Courses</a></li>
+            <li><a href="{% url 'student:logout' %}">Logout </a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="text-box">
+        <h1>Wellcome to PSP Online Courses</h1>
+        {{ user }}
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
+          explicabo nesciunt odit!
+        </p>
+        <a href="" class="hero-btn">Visit us to Know more</a>
+      </div>
+    </section>
+    <section class="courses">
+      <h1>Course we offer</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis</p>
+      <div class="row">
+        <div class="course-col">
+          <h3>Intermediate</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
+            aspernatur ducimus illum tempora, unde mollitia reprehenderit harum.
+            Quibusdam fugit labore officiis ipsam minus?
+          </p>
+        </div>
+        <div class="course-col">
+          <h3>Degree</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
+            aspernatur ducimus illum tempora, unde mollitia reprehenderit harum.
+            Quibusdam fugit labore officiis ipsam minus?
+          </p>
+        </div>
+        <div class="course-col">
+          <h3>Post Graduate</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
+            aspernatur ducimus illum tempora, unde mollitia reprehenderit harum.
+            Quibusdam fugit labore officiis ipsam minus?
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer">
+      <h4>About us</h4>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. <br />Officia
+        debitis veniam cum iste eos facilis dicta. Eos et consequuntur nesciunt.
+      </p>
+      <div class="icons">
+        <i class="bx bxl-instagram-alt"></i>
+        <i class="bx bxl-facebook"></i>
+        <i class="bx bxl-twitter"></i>
+        <i class="bx bxl-linkedin"></i>
+      </div>
+    </section>
+
   </body>
 </html>
