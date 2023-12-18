@@ -29,6 +29,12 @@ class teacher_form(forms.ModelForm):
             field.widget.attrs["class"] = "form-control"
             field.widget.attrs["placeholder"] = "Enter " + str(field.label)
 
+    def __init__(self, *args, **kwargs):
+        super(changepwd_form,self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs["class"] = "form-control"
+            field.widget.attrs["placeholder"] = "Enter " + str(field.label)
+
     def clean_username(self):
         username = self.cleaned_data["username"]
         if not (username[0].isupper()):
