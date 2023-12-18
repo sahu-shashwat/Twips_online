@@ -4,45 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verification</title>
-    <!-- <style>
-        .left
-        {
-            width: 50%;
-            
-            float: left;
-            /* background-color: orange; */
+    
+    
+    {% load static %}
+
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link href="css/style.css" rel="stylesheet" id="style">
+    <!-- Bootstrap core Library -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+    <!-- Font Awesome-->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <style>
+        /*author:starttemplate*/
+        /*reference site : starttemplate.com*/
+        body {
+        background-image:url('{% static 'images/otp.jpg' %}');
+        background-position:center;
+        background-size:cover;
+        
+        -webkit-font-smoothing: antialiased;
+        font: normal 14px Roboto,arial,sans-serif;
+        font-family: cursive!important;
         }
-        .right
-        {
-            width: 50%;
-            height: 98vh;
-            float: right;
-            background-color: orange;
+
+        .container {
+            padding: 110px;
         }
-        .h11
-        {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #ffffff!important;
+            opacity: 1; /* Firefox */
+            font-size:18px!important;
         }
-        .lh1
-        {
-            background-color: orange;
-            /* margin-right: 10px; */
+        .form-login {
+            background-color: rgba(0,0,0,0.55);
+            padding-top: 10px;
+            padding-bottom: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 15px;
+            border-color:#d2d2d2;
+            border-width: 5px;
+            color:white;
+            box-shadow:0 1px 0 #cfcfcf;
         }
-        .rh1
-        {
-            background-color: white;
-            /* margin-left: 20px; */
+        .form-control{
+            background:transparent!important;
+            color:white!important;
+            font-size: 18px!important;
         }
-    </style> -->
+        h1{
+            color:white!important;
+        }
+        h4 { 
+        border:0 solid #fff; 
+        border-bottom-width:1px;
+        padding-bottom:10px;
+        text-align: center;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+        .text-white{
+            color: white!important;
+        }
+        .wrapper {
+            text-align: center;
+        }
+        .footer p{
+            font-size: 18px;
+        }
+        .btn:hover
+        {
+            transform: scale(1.05);
+        }
+        .btn{
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
-    <!-- <div class="h11">
-        <h1 class="lh1">OTP</h1>
-        <h1 class="rh1">Verification</h1>
-    </div> -->
-    <form action="" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-5 col-md-4 text-center">
+                <!-- <h1 class='text-white'>Teacher Register Form</h1> -->
+                <div class="form-login"></br>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                    <h4>OTP Verification</h4> 
+                        
+                    </br>
+                    <input type="number" max="999999" required class="form-control input-sm chat-input" placeholder="Enter OTP" name="otp" id="id_otp"><br>
+                    <!-- <input type="email" id="id_mail" required name="email" class="form-control input-sm chat-input" placeholder="Email"/> -->
+                    </br></br>
+                    <div class="wrapper">
+                        <span class="group-btn">
+                            <input type="submit" class="btn btn-danger btn-md" value="Register">
+                        </span>                           
+                    </div>
+                    </form>                   
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- </br></br></br> -->
+      </div>
+    <!-- <form action="" method="post">
         {% csrf_token %}
         <div class="left">
             <h1 class="lh1">OTP</h1>
@@ -53,6 +131,6 @@
             <input type="number" max="999999" name="otp" id="id_otp"><br>
             <input type="submit" value="Verify">
         </div>
-    </form>
+    </form> -->
 </body>
 </html>
