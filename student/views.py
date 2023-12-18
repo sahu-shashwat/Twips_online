@@ -107,6 +107,11 @@ def my_course(request):
         request=request, template_name="my_course.html", context={"res": temp}
     )
 
+def course_video(request, pk):
+    res = course_video_model.objects.filter(cid=pk)
+    return render(
+        request=request, template_name="course_video.html", context={"res": res}
+    )
 
 def forgot_pwd_view(request):
     res=student_model.objects.all().values_list('email')

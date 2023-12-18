@@ -23,6 +23,12 @@ class teacher_form(forms.ModelForm):
             "password",
         ]
 
+    def __init__(self, *args, **kwargs):
+        super(teacher_form, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs["class"] = "form-control"
+            field.widget.attrs["placeholder"] = "Enter " + str(field.label)
+
     def clean_username(self):
         username = self.cleaned_data["username"]
         if not (username[0].isupper()):
@@ -100,8 +106,10 @@ class teacher_form(forms.ModelForm):
 
 
 class teacher_login_form(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control"}))
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={"class": "form-control"})
+    )
 
     def clean_username(self):
         username = self.cleaned_data["username"]
@@ -198,4 +206,3 @@ class changepwd_form(forms.Form):
                 "New password and re-entered password should be same as password"
             )
         return paswd
-
