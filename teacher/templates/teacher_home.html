@@ -28,7 +28,7 @@
       .header {
         min-height: 100vh;
         width: 100%;
-        background-image: url(https://cdn.pixabay.com/photo/2017/08/01/00/16/apple-2562204_1280.jpg);
+        background-image: url(https://cdn.pixabay.com/photo/2016/03/26/13/09/cup-of-coffee-1280537_1280.jpg);
         background-position: center;
         background-size: cover;
         position: relative;
@@ -204,9 +204,11 @@
         <div class="nav-links">
           <ul>
             <li class="activate"><a href="">Home</a></li>
-            <li><a href="{% url 'student:all_course' %}">All Courses</a></li>
-            <li><a href="{% url 'student:my_course'%}">My Courses</a></li>
-            <li><a href="{% url 'student:logout' %}">Logout </a></li>
+            <li><a href="{% url 'teacher:register_course' %}">Register Course</a></li>
+            <li><a href="{% url 'teacher:register_domain' %}">Register Domain</a></li>
+            <li><a href="{% url 'teacher:register_video' %}">Register video</a></li>
+            <li><a href="{% url 'teacher:list_course' %}">Uploaded Course</a></li>
+            <li><a href="{% url 'teacher:logout' %}">Logout</a></li>
           </ul>
         </div>
       </nav>
