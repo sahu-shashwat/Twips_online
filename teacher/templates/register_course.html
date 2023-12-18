@@ -3,14 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Register Course</title>
+    {% load static %}
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <style>
+        .custom_body {
+            background: linear-gradient(135deg, rgba(81, 194, 52, 0.98) 0%, rgb(93, 121, 223) 107%, rgba(26, 35, 147, 1) 122%, rgb(114, 238, 52) 100%);
+            float: left;
+            width: 100%;
+        }
+        .login_box {
+            margin:0 auto;
+            max-width: 400px;
+            min-width: 320px;
+            width: 100%;            
+        }
+        .input-box {
+            float: left;
+            margin-bottom: 10px;
+            text-align: left;
+            width: 100%;
+        }
+        .i_icon {
+            border: medium none;
+            border-radius: 0;
+            color: #3965a0;
+            float: left;
+            padding: 12px;
+            top: 32px;
+            width: 40px;
+        }
+        .input_layout {
+            border: medium none;
+            border-radius: 0;
+            float: left;
+            height: 40px;
+            margin: 0;
+            padding: 0 10px;
+            width: 89%;
+        }
+        .main-box {
+            background: rgba(255, 251, 251, 0.41) none repeat scroll 0 0;
+            float: left;
+            margin-bottom: 100px;
+            margin-top: 70px;
+            padding: 15px 15px 50px;
+            width: 90%;
+            border: 1px solid #fff;
+            /* border-radius: 10px; */
+            box-shadow: 7px 7px 2px #444;
+            border-radius: 5px 20px 5px 20px;
+        }
+        .main-box:hover
+        {
+            transition: 0.3s;
+            border-radius: 15px;
+            box-shadow: 11px 11px 3px #444;
+            transform: scale(1.008);
+            background: rgba(233, 230, 230, 0.233) none repeat scroll 0 0;
+        }
+        .btn_style {
+            background-color:  rgba(57, 101, 160, 1);
+            color: #fff;
+            margin: 15px 15px;
+            padding: 10px 0;
+            width: 90%;
+            border: none;
+            box-shadow: 3px 3px 1px #444;
+            border-radius: 2px 4px 2px 4px;
+         
+        }
+        .btn_style:hover {
+            background-color: rgba(57, 101, 160, 1);
+            color: #ffffff;
+            transform: scale(1.01);
+            border-radius: 5px;
+            /* transition: 1s; */
+        }
+
+
+    </style>
+
 </head>
 <body>
-    <h1>Registe Course</h1>
+
+<div class="custom_body">
+    <div class="container">
+    	<div class="row">
+    	    
+    	    <div class="login_box">
+    	        <section class="main-box">
+                    <h1>Register Course</h1>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{form}}
+                        <input type="submit" class="btn btn-default btn_style" value="register">
+                    </form>
+                    <!-- <form>
+        	        <div class="input-box">
+            	        <span class="input-group-addon i_icon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="email" type="text" class="form-control input_layout" name="email" placeholder="Email">
+                    </div>
+                    <div class="input-box">
+            	         <span class="input-group-addon i_icon"><i class="glyphicon glyphicon-lock"></i></span>
+                         <input id="password" type="password" class="form-control input_layout" name="password" placeholder="Password">
+                    </div>
+                    </form> -->
+                    <!-- <button type="button" class="btn btn-default btn_style">LOGIN</button> -->
+                </section>   
+               
+    	    </div>
+    	    
+    	</div>
+    </div>
+</div>    
+    <!-- <h1>Register Course</h1>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{form}}
         <input type="submit" value="register">
-    </form>
+    </form> -->
 </body>
 </html>
