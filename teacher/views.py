@@ -108,7 +108,10 @@ def register_course(request):
     if request.method == "POST" and request.FILES:
         form = course_form(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            data=form.save(commit=True)
+            data.tid=request.user.id
+            if data:
+                form.save()
             messages.success(request,"course data saved")
         else:
             messages.error(request,"data not saved")
@@ -156,7 +159,7 @@ def delete_domain(request, pk):
 
 
 def list_course(request):
-    res = course_model.objects.all()
+    res = course_model.objects.filter(tid=request.user.id)
     return render(request=request, template_name="list.html", context={"res": res})
 
 
