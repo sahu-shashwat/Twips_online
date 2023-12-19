@@ -29,12 +29,6 @@ class teacher_form(forms.ModelForm):
             field.widget.attrs["class"] = "form-control"
             field.widget.attrs["placeholder"] = "Enter " + str(field.label)
 
-    # def __init__(self, *args, **kwargs):
-    #     super(changepwd_form,self).__init__(*args, **kwargs)
-    #     for field in self.fields.values():
-    #         field.widget.attrs["class"] = "form-control"
-    #         field.widget.attrs["placeholder"] = "Enter " + str(field.label)
-
     def clean_username(self):
         username = self.cleaned_data["username"]
         if not (username[0].isupper()):
@@ -158,28 +152,47 @@ class domain_form(forms.ModelForm):
     class Meta:
         model = domain_model
         fields = "__all__"
+    def __init__(self, *args, **kwargs):
+        super(domain_form, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs["class"] = "form-control"
+            field.widget.attrs["placeholder"] = "Enter " + str(field.label)
+
+    
 
 
 class course_form(forms.ModelForm):
     class Meta:
         model = course_model
-        exclude=['tid']
+        exclude = ["tid"]
+    def __init__(self, *args, **kwargs):
+        super(course_form, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs["class"] = "form-control"
+            field.widget.attrs["placeholder"] = "Enter " + str(field.label)
 
 
 class video_form(forms.ModelForm):
     class Meta:
         model = course_video_model
         fields = "__all__"
+    def __init__(self, *args, **kwargs):
+        super(video_form, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs["class"] = "form-control"
+            field.widget.attrs["placeholder"] = "Enter " + str(field.label)
 
 
 class changepwd_form(forms.Form):
     enter_new_password = forms.CharField(
-        widget=forms.PasswordInput,
+        widget=forms.PasswordInput(attrs={"placeholder": "Enter the password"}),
         validators=[
             clean_enter_new_password,
         ],
     )
-    re_enter_password = forms.CharField(widget=forms.PasswordInput)
+    re_enter_password = forms.CharField(
+        widget=forms.PasswordInput(attrs={"placeholder": "Enter the Repassword"})
+    )
 
     def clean_re_enter_password(self):
         paswd = self.cleaned_data["re_enter_password"]

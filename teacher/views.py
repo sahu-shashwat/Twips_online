@@ -64,7 +64,10 @@ def teacher_login_view(request):
 
 @login_required(login_url="/teacher/login")
 def teacher_home_view(request):
-    return render(request=request, template_name="teacher_home.html")
+    res = teacher_model.objects.get(id=request.user.id).payment
+    return render(
+        request=request, template_name="teacher_home.html", context={"payment": res}
+    )
 
 
 @login_required(login_url="/teacher/login")
@@ -79,10 +82,10 @@ def register_domain(request):
         form = domain_form(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request,"Domain data saved")
+            messages.success(request, "Domain data saved")
         else:
-            messages.error(request,"data not saved")
-        return redirect('/teacher/list_course')
+            messages.error(request, "data not saved")
+        return redirect("/teacher/list_course")
     return render(
         request=request, template_name="register_domain.html", context={"form": form}
     )
@@ -94,10 +97,10 @@ def update_domain(request, pk):
         form = domain_form(request.POST, instance=domain_model.objects.get(did=pk))
         if form.is_valid():
             form.save()
-            messages.success(request,"domain data updated")
+            messages.success(request, "domain data updated")
         else:
-            messages.error(request,"data not updated")
-        return redirect('/teacher/list_course')
+            messages.error(request, "data not updated")
+        return redirect("/teacher/list_course")
     return render(
         request=request, template_name="update_domain.html", context={"form": form}
     )
@@ -108,14 +111,14 @@ def register_course(request):
     if request.method == "POST" and request.FILES:
         form = course_form(request.POST, request.FILES)
         if form.is_valid():
-            data=form.save(commit=True)
-            data.tid=request.user.id
+            data = form.save(commit=True)
+            data.tid = request.user.id
             if data:
                 form.save()
-            messages.success(request,"course data saved")
+            messages.success(request, "course data saved")
         else:
-            messages.error(request,"data not saved")
-        return redirect('/teacher/list_course')
+            messages.error(request, "data not saved")
+        return redirect("/teacher/list_course")
     return render(
         request=request, template_name="register_course.html", context={"form": form}
     )
@@ -129,10 +132,10 @@ def update_course(request, pk):
         )
         if form:
             form.save()
-            messages.success(request,"Course updated")
+            messages.success(request, "Course updated")
         else:
-            messages.error(request,"data not updated")
-        return redirect('/teacher/list_course')
+            messages.error(request, "data not updated")
+        return redirect("/teacher/list_course")
     return render(
         request=request, template_name="update_course.html", context={"form": form}
     )
@@ -169,10 +172,10 @@ def register_video(request):
         form = video_form(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request," video link stored")
+            messages.success(request, " video link stored")
         else:
-            messages.error(request," video link not stored")
-        return redirect('/teacher/list_course')
+            messages.error(request, " video link not stored")
+        return redirect("/teacher/list_course")
     return render(
         request=request, template_name="register_video.html", context={"form": form}
     )
@@ -186,10 +189,10 @@ def update_video(request, pk):
         )
         if form:
             form.save()
-            messages.success(request,"video updated")
+            messages.success(request, "video updated")
         else:
-            messages.error(request,"video not updated")
-        return redirect('/teacher/list_course')
+            messages.error(request, "video not updated")
+        return redirect("/teacher/list_course")
     return render(
         request=request, template_name="update_video.html", context={"form": form}
     )
@@ -214,7 +217,7 @@ def list_video(request, pk):
 
 def forgot_pwd_view(request):
     res = teacher_model.objects.all().values_list("email")
-    
+
     global otp_confirm
     if request.method == "POST":
         otp = random.randint(000000, 999999)

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     {% load static %}
-
+     <link rel="icons" href="">
     <style>
         *{
             margin: 0;
@@ -17,9 +17,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            /* background-color: dimgray; */
-            background-image: url(https://cdn.pixabay.com/photo/2016/11/23/14/37/apple-1853259_1280.jpg);
-            /* background-image: url(./Online_Course_bg_image.png); */
+            background-image: url(https://cdn.pixabay.com/photo/2022/05/24/04/38/study-7217599_1280.jpg);
             background-size: 100% 100vh;
         }
         .pContainerChildren{
@@ -29,7 +27,7 @@
         #pContainerChild2{
             flex-basis: 0%;
             border: 1px solid white;
-            box-shadow:2px 0px 0px orangered,-2px 0px 0px red;
+            box-shadow:2px 0px 0px rgb(71, 172, 250),-2px 0px 0px rgb(71, 172, 250);
             height: 80%;
         }
         #project_brand_logo{
@@ -54,7 +52,7 @@
         }
         #continueAsText{
             font-size: 55px;
-            color:rgb(0, 255, 0) ;
+            color:rgb(255, 0, 0) ;
             text-shadow: 3px 3px 7px black; 
             font-family: 'Lexend', sans-serif;
         }
@@ -70,17 +68,18 @@
             margin-top: 3%;
             padding: 0% 1.5%;
             border-radius: 10px;
-            background-color: rgb(237, 86, 86);
-            color: white;
+            background-color:rgb(181, 168, 168);
+            color: rgb(159, 16, 16);
             font-family: 'Lexend', sans-serif;
-            border: solid 1px rgb(237, 86, 86);
+            /* border: solid 1px rgb(237, 86, 86); */
         }
         .continueAsA
         {
             /* margin: 0px 10px; */
             text-decoration: none;
-            color: white;
-
+            padding: 8px;
+            font-size: 20px;
+            color: rgb(13, 13, 13);
         }
         .twobuttons{
             display: flex;
@@ -98,6 +97,7 @@
         .continueAsButtons:hover
         {
             transform: scale(1.05);
+            transition: 0.3s;
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -111,11 +111,6 @@
     <!-- <link rel="stylesheet" href="{% static 'css/mainhome.css' %}"> -->
 </head>
 <body>
-
-    <!-- <h1>Hyy Wellcome to Online Course</h1>
-    <a href="{% url 'teacher:register' %}"><button>Teacher Registration</button></a>
-    <a href="{% url 'student:register' %}"><button>Student Registration</button></a>
-    <a href="{% url 'teacher:login' %}"><button>login</button></a>  -->
 
     <div class="" id="pContainer">
         <section class="pContainerChildren" id="pContainerChild1">
@@ -132,10 +127,5 @@
             <button class="continueAsButtons" id="loginButton"><a class="continueAsA" id="logina" href="{% url 'teacher:login' %}">Already User ?</a></button>
         </section>
     </div>
-    <!-- <h1>Hyy Wellcome to Twips</h1>
-    <button>Teacher Registration</button></a>
-    <button>Student Registration</button></a>
-    <button>login</button></a> -->
-
 </body>
 </html>

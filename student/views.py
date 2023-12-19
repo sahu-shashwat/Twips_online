@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from student.models import student_model, buy_course_model
-from teacher.models import course_video_model, course_model
-from student.forms import student_form, student_login_form,changepwd_form
+from teacher.models import course_video_model, course_model, teacher_model
+from student.forms import student_form, student_login_form, changepwd_form
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.core.mail import send_mail
@@ -30,11 +30,10 @@ def student_view(request):
     )
 
 
-
 # def student_login_view(request):
 #     global otp_confirm
 #     form = student_login_form()
-    
+
 #     if request.method == "POST":
 #         form = student_login_form(request.POST)
 #         if form.is_valid():
@@ -78,9 +77,14 @@ def all_course(request):
 @login_required(login_url="/teacher/login")
 def buy_course(request, pk):
     res = course_model.objects.get(cid=pk)
+    print(res.tid, res.price)
     if request.method == "POST":
         if not (buy_course_model.objects.filter(stud_id=request.user.id, course_id=pk)):
             if buy_course_model.objects.create(stud_id=request.user.id, course_id=pk):
+                price = teacher_model.objects.get(id=res.tid).payment
+                teacher_model.objects.filter(id=res.tid).update(
+                    payment=(price + res.price)
+                )
                 messages.success(request, f"You bougth the {res.course_name} course")
                 return redirect("/student/home")
             else:
@@ -89,6 +93,7 @@ def buy_course(request, pk):
         else:
             messages.warning(request, "Sorry you already bougth selected course")
             return redirect("/student/home")
+
     return render(
         request=request, template_name="buy_course.html", context={"res": res}
     )
@@ -107,48 +112,62 @@ def my_course(request):
         request=request, template_name="my_course.html", context={"res": temp}
     )
 
+
 def course_video(request, pk):
     res = course_video_model.objects.filter(cid=pk)
     return render(
         request=request, template_name="course_video.html", context={"res": res}
     )
 
+
 def forgot_pwd_view(request):
-    res=student_model.objects.all().values_list('email')
+    res = student_model.objects.all().values_list("email")
     global otp_confirm
-    if request.method=='POST':
-        otp=random.randint(000000,999999)
-        otp_confirm=otp
-        email=request.POST['email']
+    if request.method == "POST":
+        otp = random.randint(000000, 999999)
+        otp_confirm = otp
+        email = request.POST["email"]
         if (email,) in res:
-            subject='Student Verification Code'
-            msg=f'''Dear Student,
+            subject = "Student Verification Code"
+            msg = f"""Dear Student,
                     Please enter this OTP {otp}.
-                    Thankyou...'''
-            send_mail(subject=subject,message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list=[email])
-            email_id=student_model.objects.get(email=email)
-            return redirect(f'/student/otp/{email_id.id}/')
+                    Thankyou..."""
+            send_mail(
+                subject=subject,
+                message=msg,
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=[email],
+            )
+            email_id = student_model.objects.get(email=email)
+            return redirect(f"/student/otp/{email_id.id}/")
         else:
-            messages.error(request,"Email or OTP is incorrect.")       
-    return render(request=request,template_name='st_forgotten_pwd.html')
+            messages.error(request, "Email or OTP is incorrect.")
+    return render(request=request, template_name="st_forgotten_pwd.html")
 
-def otp_view(request,pk):
-    if request.method=='POST':
-        if str(otp_confirm)==str(request.POST['otp']):
-            return redirect(f'/student/changepwd/{pk}/')
+
+def otp_view(request, pk):
+    if request.method == "POST":
+        if str(otp_confirm) == str(request.POST["otp"]):
+            return redirect(f"/student/changepwd/{pk}/")
         else:
-            return redirect('/student/forgotpwd')
-    return render(request=request,template_name='st_otp.html')
+            return redirect("/student/forgotpwd")
+    return render(request=request, template_name="st_otp.html")
 
 
-
-def changepwd_view(request,pk):
-    form=changepwd_form()
-    if request.method=='POST':
-        res=student_model.objects.get(id=pk)
-        form=changepwd_form(request.POST)
+def changepwd_view(request, pk):
+    form = changepwd_form()
+    if request.method == "POST":
+        res = student_model.objects.get(id=pk)
+        form = changepwd_form(request.POST)
         if form.is_valid():
-            if form.cleaned_data['enter_new_password']==form.cleaned_data['re_enter_password']:
-                student_model.objects.filter(id=pk).update(password=make_password(form.cleaned_data['enter_new_password']))
-                return HttpResponse('Password is changed')
-    return render(request=request,template_name='createpwd.html',context={'form':form})
+            if (
+                form.cleaned_data["enter_new_password"]
+                == form.cleaned_data["re_enter_password"]
+            ):
+                student_model.objects.filter(id=pk).update(
+                    password=make_password(form.cleaned_data["enter_new_password"])
+                )
+                return HttpResponse("Password is changed")
+    return render(
+        request=request, template_name="createpwd.html", context={"form": form}
+    )
