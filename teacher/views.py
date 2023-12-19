@@ -172,7 +172,7 @@ def register_video(request):
             messages.success(request," video link stored")
         else:
             messages.error(request," video link not stored")
-        return redirect('/teacher/list_video')
+        return redirect('/teacher/list_course')
     return render(
         request=request, template_name="register_video.html", context={"form": form}
     )
@@ -189,7 +189,7 @@ def update_video(request, pk):
             messages.success(request,"video updated")
         else:
             messages.error(request,"video not updated")
-        return redirect('/teacher/list_video')
+        return redirect('/teacher/list_course')
     return render(
         request=request, template_name="update_video.html", context={"form": form}
     )
