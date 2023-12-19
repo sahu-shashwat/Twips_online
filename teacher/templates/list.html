@@ -304,6 +304,14 @@
         </div>
       </nav>
     </section>
+    {% for i in messages %}
+      {% if i.tags == 'success' %}
+      <h3 style="color: rgb(41, 224, 13);" >{{i}}</h3>
+      {% else %}
+      <h3 style="color: rgb(236, 54, 8);" >{{i}}</h3>
+      {% endif %}
+    {% endfor %}
+
     <section class="allcourses">
       <h1>All courses</h1>
       <p>

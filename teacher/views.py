@@ -79,9 +79,10 @@ def register_domain(request):
         form = domain_form(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse("Domain data saved")
+            messages.success(request,"Domain data saved")
         else:
-            return HttpResponse("data not saved")
+            messages.error(request,"data not saved")
+        return redirect('/teacher/list_course')
     return render(
         request=request, template_name="register_domain.html", context={"form": form}
     )
@@ -93,9 +94,10 @@ def update_domain(request, pk):
         form = domain_form(request.POST, instance=domain_model.objects.get(did=pk))
         if form.is_valid():
             form.save()
-            return HttpResponse("data updated")
+            messages.success(request,"domain data updated")
         else:
-            return HttpResponse("data not updated")
+            messages.error(request,"data not updated")
+        return redirect('/teacher/list_course')
     return render(
         request=request, template_name="update_domain.html", context={"form": form}
     )
@@ -107,9 +109,10 @@ def register_course(request):
         form = course_form(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponse("course data saved")
+            messages.success(request,"course data saved")
         else:
-            return HttpResponse("data not saved")
+            messages.error(request,"data not saved")
+        return redirect('/teacher/list_course')
     return render(
         request=request, template_name="register_course.html", context={"form": form}
     )
@@ -123,9 +126,10 @@ def update_course(request, pk):
         )
         if form:
             form.save()
-            return HttpResponse("course updated")
+            messages.success(request,"Course updated")
         else:
-            return HttpResponse("data not updated")
+            messages.error(request,"data not updated")
+        return redirect('/teacher/list_course')
     return render(
         request=request, template_name="update_course.html", context={"form": form}
     )
@@ -162,9 +166,10 @@ def register_video(request):
         form = video_form(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse(" video link stored")
+            messages.success(request," video link stored")
         else:
-            return HttpResponse(" video link not stored")
+            messages.error(request," video link not stored")
+        return redirect('/teacher/list_video')
     return render(
         request=request, template_name="register_video.html", context={"form": form}
     )
@@ -178,9 +183,10 @@ def update_video(request, pk):
         )
         if form:
             form.save()
-            return HttpResponse("video updated")
+            messages.success(request,"video updated")
         else:
-            return HttpResponse("video not updated")
+            messages.error(request,"video not updated")
+        return redirect('/teacher/list_video')
     return render(
         request=request, template_name="update_video.html", context={"form": form}
     )
