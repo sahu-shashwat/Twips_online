@@ -26,6 +26,7 @@ class domain_model(models.Model):
 class course_model(models.Model):
     did = models.ForeignKey(domain_model, on_delete=models.CASCADE)
     cid = models.AutoField(primary_key=True)
+    tid =models.PositiveSmallIntegerField(default=11)
     course_name = models.CharField(max_length=20)
     desc = models.CharField(max_length=300)
     price=models.BigIntegerField(default=1000)

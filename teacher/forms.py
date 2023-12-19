@@ -163,7 +163,7 @@ class domain_form(forms.ModelForm):
 class course_form(forms.ModelForm):
     class Meta:
         model = course_model
-        fields = "__all__"
+        exclude=['tid']
 
 
 class video_form(forms.ModelForm):
