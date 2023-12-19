@@ -106,10 +106,16 @@ class teacher_form(forms.ModelForm):
 
 
 class teacher_login_form(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control"}))
+    username = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control","placeholder":"Enter username"}))
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"class": "form-control"})
+        widget=forms.PasswordInput(attrs={"class": "form-control","placeholder":"Enter password"})
     )
+
+    # def __init__(self, *args, **kwargs):
+    #     super(teacher_login_form, self).__init__(*args, **kwargs)
+    #     for field in self.fields.values():
+    #         field.widget.attrs["class"] = "form-control"
+    #         field.widget.attrs["placeholder"] = "Enter " + str(field.label)
 
     def clean_username(self):
         username = self.cleaned_data["username"]

@@ -14,10 +14,10 @@
         background-image:url("{% static 'images/teacher.jpg' %}");
         background-position:center;
         background-size: cover ;
-        /* height: 100vh; */
+        
         -webkit-font-smoothing: antialiased;
         font: normal 14px Roboto,arial,sans-serif;
-        font-family: 'Dancing Script', cursive!important;
+        /* font-family: 'Dancing Script', cursive!important; */
         }
 
         .container {
@@ -32,6 +32,7 @@
             color: #ffffff!important;
             opacity: 1; /* Firefox */
             font-size:18px!important;
+            
         }
         .form-login {
             background-color: rgba(0,0,0,0.55);
@@ -41,17 +42,27 @@
             padding-bottom: 20px;
             padding-left: 20px;
             padding-right: 20px;
-            border-radius: 15px;
+            border-radius: 7px 20px 7px 20px;
             border-color:#d2d2d2;
             border-width: 5px;
             color:white;
-            box-shadow:0 1px 0 #cfcfcf;
+            box-shadow:rgba(12, 12, 12, 0.397) none repeat scroll 0 0;
         }
+        .form-login:hover
+        {
+            transition: 0.5s;
+            border-radius: 15px;
+            box-shadow: 7px 7px 3px #222222;
+            transform: scale(1.008);
+            background: rgba(12, 12, 12, 0.24) none repeat scroll 0 0;
+        }
+        
         .form-control{
-            background:transparent!important;
+            background:rgba(0, 0, 0, 0.342)!important;
             color:white!important;
             font-size: 18px!important;
         }
+      
         h1{
             color:white!important;
         }
@@ -70,10 +81,14 @@
         }
         .btn{
             box-shadow: 3px 3px 1px black;
+            border-radius: 2px 7px 2px 7px!important;
         }
         .btn:hover
         {
             transform: scale(1.05);
+            transition: 0.5s;
+            border-radius: 4px!important;
+            box-shadow: 3.5px 3.5px 1px #222222;
         }
         .text-white{
             color: white!important;
@@ -86,6 +101,10 @@
         }
         .footer p{
             font-size: 18px;
+        }
+        label
+        {
+            font-family: cursive;
         }
     </style>
 

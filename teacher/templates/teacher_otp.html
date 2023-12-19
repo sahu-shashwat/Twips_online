@@ -35,7 +35,11 @@
         
         -webkit-font-smoothing: antialiased;
         font: normal 14px Roboto,arial,sans-serif;
-        font-family: cursive!important;
+        /* font-family: cursive!important; */
+        }
+        label
+        {
+            font-family: cursive;
         }
 
         .container {
@@ -45,18 +49,28 @@
             color: #ffffff!important;
             opacity: 1; /* Firefox */
             font-size:18px!important;
+            
         }
+      
         .form-login {
             background-color: rgba(0,0,0,0.55);
             padding-top: 10px;
             padding-bottom: 20px;
             padding-left: 20px;
             padding-right: 20px;
-            border-radius: 15px;
+            border-radius: 7px 20px 7px 20px;
             border-color:#d2d2d2;
             border-width: 5px;
             color:white;
             box-shadow:0 1px 0 #cfcfcf;
+        }
+        .form-login:hover
+        {
+            transition: 0.5s;
+            border-radius: 15px;
+            box-shadow: 7px 7px 3px #444;
+            transform: scale(1.008);
+            background: rgba(12, 12, 12, 0.397) none repeat scroll 0 0;
         }
         .form-control{
             background:transparent!important;
@@ -88,10 +102,14 @@
         .btn:hover
         {
             transform: scale(1.05);
+            transition: 0.5s;
+            border-radius: 5px;
+            box-shadow: 3.5px 3.5px 1px #363636;
         }
         .btn{
             margin: 10px;
             box-shadow: 3px 3px 1px black;
+            border-radius: 2px 4.5px 2px 4.5px;
         }
     </style>
 </head>
@@ -111,7 +129,7 @@
                     </br></br>
                     <div class="wrapper">
                         <span class="group-btn">
-                            <input type="submit" class="btn btn-danger btn-md" value="Register">
+                            <input type="submit" class="btn btn-danger btn-md" value="Verify">
                         </span>                           
                     </div>
                     </form>                   
