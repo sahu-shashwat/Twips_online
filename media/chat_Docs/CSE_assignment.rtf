@@ -1,0 +1,412 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Calibri;}{\f2\fnil\fcharset0 Cambria Math;}}
+{\colortbl ;\red0\green0\blue0;}
+{\*\generator Riched20 10.0.18362}{\*\mmathPr\mmathFont2\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\cf1\b\i\f0\fs28\lang9 Name- shashwat sahu\par
+Registration No-1901110072\par
+Branch-CSE\par
+\ul\b0\i0\par
+Array \par
+\ulnone\b 1. find out the average of 4 integers\cf0\b0\fs22\par
+#include <stdio.h>\par
+int main()\par
+\{\par
+    int avg = 0;\par
+    int sum =0;\par
+    int x=0;\par
+\par
+    /* Array- declaration \f1\endash  length 4*/\par
+    int num[4];\par
+\par
+    /* We are using a for loop to traverse through the array\par
+     * while storing the entered values in the array\par
+     */\par
+    for (x=0; x<4;x++)\par
+    \{\par
+        printf("Enter number %d \\n", (x+1));\par
+        scanf("%d", &num[x]);\par
+    \}\par
+    for (x=0; x<4;x++)\par
+    \{\par
+        sum = sum+num[x];\par
+    \}\par
+\par
+    avg = sum/4;\par
+    printf("Average of entered number is: %d", avg);\par
+    return 0;\par
+\}\par
+\par
+\par
+
+\pard\sa200\sl276\slmult1\tx284 Output:\par
+
+\pard\sa200\sl276\slmult1\par
+Enter number 1 \par
+10\par
+Enter number 2 \par
+10\par
+Enter number 3 \par
+20\par
+Enter number 4 \par
+40\b\par
+\b0 Average of entered number is: 20\par
+\par
+\cf1\par
+
+\pard\sa200\sl276\slmult1\tx5396\b\f0\fs28\lang16393 2. sum of integers\b0\fs22\par
+#include <stdio.h>\par
+\par
+int main() \{\par
+   int array[10] = \{1, 2, 3, 4, 5, 6, 7, 8, 9, 0\};\par
+   int sum, loop;\par
+\par
+   sum = 0;\par
+   \par
+   for(loop = 9; loop >= 0; loop--) \{\par
+      sum = sum + array[loop];      \par
+   \}\par
+\par
+   printf("Sum of array is %d.", sum);   \par
+\par
+   return 0;\par
+\}\par
+\par
+ output :\par
+\par
+Sum of array is 45\par
+\b\par
+\ul\b0\fs28 String\par
+\ulnone\b 1. Find string length without function\par
+\b0\f2\fs22 #\f0 include\f2  <\f0 stdio\f2 .\f0 h\f2 >\f0\par
+\par
+int\f2  \f0 main\f2 () \{\f0\par
+\f2    \f0 char\f2  \f0 s1\f2 [] = \f0 "TajMahal"\f2 ;\f0\par
+\f2    \f0 int\f2  \f0 i\f2  = \f0 0\f2 ;\f0\par
+\f2       \f0\par
+\f2    \f0 while\f2 (\f0 s1\f2 [\f0 i\f2 ] != \f0 '\f2\\\f0 0'\f2 ) \{\f0\par
+\f2       \f0 i\f2 ++;\f0\par
+\f2    \}\f0\par
+\f2    \f0\par
+\f2    \f0 printf\f2 (\f0 "Length\f2  \f0 of\f2  \f0 string\f2  \f0 '%s'\f2  \f0 is\f2  \f0 %d"\f2 , \f0 s1\f2 , \f0 i\f2 );\f0\par
+\f2    \f0\par
+\f2    \f0 return\f2  \f0 0\f2 ;\f0\par
+\f2\}\par
+\par
+output:\par
+\par
+Length of string 'TajMahal' is 8\par
+\par
+\b\fs28 2.Print a string character by character \b0\fs22\par
+#include <stdio.h>\par
+\par
+int main() \{\par
+   char str[] = "Hello World";\par
+   \par
+   printf("%s\\n", str);\par
+\par
+   return 0;\par
+\}\par
+\par
+output:\par
+Hello world \par
+\par
+\ul\fs28 Structure\par
+\ulnone\b 1.Add two distances\par
+\b0\fs22 #include <stdio.h>\par
+struct Distance\par
+\{\par
+    int feet;\par
+    float inch;\par
+\} dist1, dist2, sum;\par
+\par
+int main()\par
+\{\par
+    printf("1st distance\\n");\par
+    printf("Enter feet: ");\par
+    scanf("%d", &dist1.feet);\par
+\par
+    printf("Enter inch: ");\par
+    scanf("%f", &dist1.inch);\par
+    printf("2nd distance\\n");\par
+\par
+    printf("Enter feet: ");\par
+    scanf("%d", &dist2.feet);\par
+\par
+    printf("Enter inch: ");\par
+    scanf("%f", &dist2.inch);\par
+    sum.feet = dist1.feet + dist2.feet;\par
+    \par
+    sum.inch = dist1.inch + dist2.inch;\par
+\par
+    \par
+    while (sum.inch >= 12) \par
+    \{\par
+        ++sum.feet;\par
+        sum.inch = sum.inch - 12;\par
+    \}\par
+\par
+    printf("Sum of distances = %d\\'-%.1f\\"", sum.feet, sum.inch);\par
+    return 0;\par
+\}\par
+\par
+output:\par
+\par
+1st distance\par
+Enter feet: 12\par
+Enter inch: 7.9\par
+2nd distance\par
+Enter feet: 2\par
+Enter inch: 9.8\par
+Sum of distances = 15'-5.7"\par
+\par
+\ul\fs28 Function\par
+\ulnone\fs22\par
+\b\f0\fs28 1.Addition of two number \par
+\b0\fs22 #include\f2  <\f0 stdio\f2 .\f0 h\f2 >\f0\par
+int\f2  \f0 addNumbers\f2 (\f0 int\f2  \f0 a\f2 , \f0 int\f2  \f0 b\f2 );         \f0\par
+\par
+int\f2  \f0 main\f2 ()\f0\par
+\f2\{\f0\par
+\f2     \f0 int\f2  \f0 n1\f2 ,\f0 n2\f2 ,\f0 sum\f2 ;\f0\par
+\par
+\f2     \f0 printf\f2 (\f0 "Enters\f2  \f0 two\f2  \f0 numbers\f2 : \f0 "\f2 );\f0\par
+\f2     \f0 scanf\f2 (\f0 "%d\f2  \f0 %d"\f2 ,&\f0 n1\f2 ,&\f0 n2\f2 );\f0\par
+\par
+\f2     \f0 sum\f2  = \f0 addNumbers\f2 (\f0 n1\f2 , \f0 n2\f2 );        \f0\par
+\f2     \f0 printf\f2 (\f0 "sum\f2  = \f0 %d"\f2 ,\f0 sum\f2 );\f0\par
+\par
+\f2     \f0 return\f2  \f0 0\f2 ;\f0\par
+\f2\}\f0\par
+\par
+int\f2  \f0 addNumbers\f2 (\f0 int\f2  \f0 a\f2 , \f0 int\f2  \f0 b\f2 ) \par
+\{\f0\par
+\f2     \f0 int\f2  \f0 result\f2 ;\f0\par
+\f2     \f0 result\f2  = \f0 a\f2 +\f0 b\f2 ;\f0\par
+\f2     \f0 return\f2  \f0 result\f2 ;                  \f0\par
+\f2\}\par
+output;\par
+3\f0\par
+\ul\lang1033\par
+\cf0\ulnone\b\fs28\lang9 2.Prime numbers between two integers\par
+\par
+\b0\fs22 #include <stdio.h>\par
+int checkPrimeNumber(int n);\par
+int main() \{\par
+    int n1, n2, i, flag;\par
+    printf("Enter two positive integers: ");\par
+    scanf("%d %d", &n1, &n2);\par
+    printf("Prime numbers between %d and %d are: ", n1, n2);\par
+    for (i = n1 + 1; i < n2; ++i) \{\par
+\par
+\par
+        flag = checkPrimeNumber(i);\par
+\par
+        if (flag == 1)\par
+            printf("%d ", i);\par
+    \}\par
+    return 0;\par
+\}\par
+\par
+\par
+int checkPrimeNumber(int n) \{\par
+    int j, flag = 1;\par
+    for (j = 2; j <= n / 2; ++j) \{\par
+        if (n % j == 0) \{\par
+            flag = 0;\par
+            break;\par
+        \}\par
+    \}\par
+    return flag;\par
+\}\par
+\par
+Output:\par
+\par
+Enter two positive integers: 12\par
+30\par
+Prime numbers between 12 and 30 are: 13 17 19 23 29\par
+\par
+\ul\fs28 Union\par
+\ulnone\b 1.Write code to print out the values of U.a, U.S.x and U.S.b in the following program:\b0\fs22\par
+#include <stdio.h>\par
+\par
+union job\par
+\par
+\{\par
+\par
+    struct data\par
+\par
+    \{\par
+\par
+         int x;\par
+\par
+         double b;\par
+\par
+    \}S;\par
+\par
+    int a;\par
+\par
+\} U;\par
+\par
+int main() \{\par
+\par
+    U.S.b=7;\par
+\par
+    U.a=4;\par
+\par
+    U.S.x=5;\par
+\par
+    \par
+\par
+    printf("%d %d %f\\n",U.a,U.S.x,U.S.b);\par
+    return 0;\par
+\par
+ \}\par
+
+\pard\sa200\sl276\slmult1\f1\par
+\f0\lang16393\par
+1. Write code to print out the values of U.a, U.S.xoutput:\par
+U.S.b=7;\par
+\par
+printf("U.S.b= %f\\n", U.S.b);\par
+\par
+U.a=4;\par
+\par
+printf("U.a= %d\\n",U.a);\par
+\par
+U.S.x=5;\par
+\par
+printf("U.S.x= %d\\n" ,U.S.x);\par
+\b\fs28 2. Initialize and print the following union variables: 7, and 7.0 using the following program that has a union and a member to track what's in the union inside a structure\b0\fs22 .\par
+\par
+#include <stdio.h>\par
+\par
+#include <stdlib.h>\par
+\par
+/* code for types in union */\par
+\par
+#define FLOAT_TYPE      1\par
+\par
+#define CHAR_TYPE       2\par
+\par
+#define INT_TYPE        3\par
+\par
+struct S\{\par
+\par
+      int type_in_union;\par
+\par
+      union\{\par
+\par
+              float   un_float;\par
+\par
+              char    un_char;\par
+\par
+              int     un_int;\par
+\par
+      \}U;\par
+\par
+\}S;\par
+\par
+void  print_vt(void)\{\par
+\par
+      switch(S.type_in_union)\{\par
+\par
+              default:\par
+\par
+                    printf("Unknown type in union\\n");\par
+\par
+                     break;\par
+\par
+              case FLOAT_TYPE:\par
+\par
+                      printf("%f\\n", S.U.un_float);\par
+\par
+                      break;\par
+\par
+              case CHAR_TYPE:\par
+\par
+                      printf("%c\\n", S.U.un_char);\par
+\par
+                      break;\par
+\par
+              case INT_TYPE:\par
+\par
+                      printf("%d\\n", S.U.un_int);\par
+\par
+                      break;\par
+\par
+      \}\par
+\par
+\}\par
+\par
+int main()\{\par
+\par
+      S.type_in_union = FLOAT_TYPE;\par
+\par
+      S.U.un_float = 3.5;\par
+\par
+      print_vt();\par
+\par
+      S.type_in_union = CHAR_TYPE;\par
+\par
+      S.U.un_char = 'a';\par
+\par
+      print_vt();\par
+      return 0;\par
+\}\par
+\par
+output:\par
+S.type_in_union = INT_TYPE;\par
+\par
+S.U.un_int = 7;\par
+\par
+print_vt();\par
+\par
+S.type_in_union = FLOAT_TYPE;\par
+\par
+S.U.un_float = 7.0;\par
+\par
+print_vt();\par
+\par
+\ul\fs28 Pointer \par
+\ulnone\b 1.What will be the output of the C program?\par
+\par
+#include<stdio.h>\par
+int main()\par
+\{\par
+\tab char *ptr;\par
+\tab char string[] = "learn C from 2braces.com";\par
+\tab ptr = string;\par
+\tab ptr += 6;\par
+\tab printf("%s",ptr);\par
+\tab return 0;\par
+\}\par
+\par
+\b0\fs22 output:\b\fs28\par
+\b0\fs22 A. compilation error\par
+\par
+B. Runtime error\par
+\par
+C. from 2braces.com\par
+\par
+D. C from 2braces.com\par
+\b\fs28\par
+\b0\fs22\par
+\b\fs28\lang9 2.What will be the output of the C program?\par
+\par
+#include<stdio.h>\par
+int main()\par
+\{\par
+\tab const int a = 5;\par
+\tab const int *ptr;\par
+\tab ptr = &a;\par
+\tab *ptr = 10;\par
+\tab printf("%d\\n", a);\par
+\tab return 0;\par
+\}\par
+\b0\fs22 output:\b\fs28\par
+\b0\fs22 A. Compilation error\par
+\par
+B. Garbage Value \par
+\par
+C. Address\par
+}
+ 

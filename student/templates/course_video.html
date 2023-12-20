@@ -219,7 +219,7 @@
       }
       .row{
         display: flex;
-        flex-wrap: wrap; 
+        flex-wrap: wrap;
         gap: 10px;
       }
       .mycourse-col {
@@ -256,64 +256,64 @@
         transform: translate(-50%);
         position: absolute;
       }
-
     </style>
   </head>
   <body>
     <section class="sub-header">
-        <nav>
-          <img src="{% static 'images/logo2.png' %}" alt="" />
-          <div class="nav-links">
-            <ul>
-              <li><a href="{% url 'student:home' %}">Home</a></li>
-              <li><a href="{% url 'student:all_course' %}">All Courses</a></li>
-              <li class="activate">
-                <a href="{% url 'student:my_course'%}">My Courses</a>
-              </li>
-              <li><a href="{% url 'student:logout' %}">Logout </a></li>
-            </ul>
-          </div>
-        </nav>
-        <h1>All Videos</h1>
-      </section>
-      <section class="mycourses">
-        <h1>Avelable Videos </h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam,
-          repellendus? Nesciunt expedita magni at qui.
-        </p>
-        <div class="row">
-           {% for i in res %}
-          <div class="mycourse-col">
-            <iframe
+      <nav>
+        <img src="{% static 'images/logo2.png' %}" alt="" />
+        <div class="nav-links">
+          <ul>
+            <li><a href="{% url 'student:home' %}">Home</a></li>
+            <li><a href="{% url 'student:all_course' %}">All Courses</a></li>
+            <li class="activate">
+              <a href="{% url 'student:my_course'%}">My Courses</a>
+            </li>
+            <li>
+              <a href="{% url 'teacher:chatbox' tid=tid cid=cid %}">My Chat</a>
+            </li>
+            <li><a href="{% url 'student:logout' %}">Logout </a></li>
+          </ul>
+        </div>
+      </nav>
+      <h1>All Videos</h1>
+    </section>
+    <section class="mycourses">
+      <h1>Avilable Videos</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam,
+        repellendus? Nesciunt expedita magni at qui.
+      </p>
+      <div class="row">
+        {% for i in res %}
+        <div class="mycourse-col">
+          <iframe
             width="260"
             height="218"
             src="{{i.v_text}}"
-            title="#1 Python Tutorial for Beginners | Introduction to Python"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
           ></iframe>
-            <div class="layer">
-              <h3>{{i.v_title}}</h3>
-            </div>
+          <div class="layer">
+            <h3>{{i.v_title}}</h3>
           </div>
-          {% endfor %} 
         </div>
-      </section>
-      <section class="footer">
-        <h3>About us</h3>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. <br />Officia
-          debitis veniam cum iste eos facilis dicta. Eos et consequuntur nesciunt.
-        </p>
-        <div class="icons">
-          <i class="bx bxl-instagram-alt"></i>
-          <i class="bx bxl-facebook"></i>
-          <i class="bx bxl-twitter"></i>
-          <i class="bx bxl-linkedin"></i>
-        </div>
-      </section>
+        {% endfor %}
+      </div>
+    </section>
+    <section class="footer">
+      <h3>About us</h3>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. <br />Officia
+        debitis veniam cum iste eos facilis dicta. Eos et consequuntur nesciunt.
+      </p>
+      <div class="icons">
+        <i class="bx bxl-instagram-alt"></i>
+        <i class="bx bxl-facebook"></i>
+        <i class="bx bxl-twitter"></i>
+        <i class="bx bxl-linkedin"></i>
+      </div>
+    </section>
   </body>
 </html>
-

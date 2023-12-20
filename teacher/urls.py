@@ -1,30 +1,11 @@
 from django.urls import path
-from teacher.views import (
-    teacher_view,
-    teacher_otp_view,
-    teacher_login_view,
-    teacher_home_view,
-    teacher_logout_view,
-    register_course,
-    register_domain,
-    update_course,
-    update_domain,
-    delete_course,
-    delete_domain,
-    list_course,
-    register_video,
-    update_video,
-    delete_video,
-    list_video,
-    forgot_pwd_view,
-    changepwd_view,
-)
+from teacher.views import *
 
 app_name = "teacher"
 
 urlpatterns = [
     path(route="register/", view=teacher_view, name="register"),
-    path(route="otp/<int:pk>/", view=teacher_otp_view, name="otp"),
+    path(route="otp/<int:pk>/<email>/", view=teacher_otp_view, name="otp"),
     path(route="login/", view=teacher_login_view, name="login"),
     path(route="home/", view=teacher_home_view, name="home"),
     path(route="logout/", view=teacher_logout_view, name="logout"),
@@ -39,6 +20,9 @@ urlpatterns = [
     path(route="update_video/<int:pk>/", view=update_video, name="update_video"),
     path(route="delete_video/<int:pk>/", view=delete_video, name="delete_video"),
     path(route="list_video/<int:pk>/", view=list_video, name="list_video"),
-    path(route='forgotpwd/',view=forgot_pwd_view,name='forgotpwd'),
-    path(route='changepwd/<int:pk>/',view=changepwd_view,name='changepwd'),
+    path(route="forgotpwd/", view=forgot_pwd_view, name="forgotpwd"),
+    path(route="changepwd/<int:pk>/", view=changepwd_view, name="changepwd"),
+    path(route="chatbox/<int:tid>/<int:cid>/", view=chat_view, name="chatbox"),
+    path(route="tchatbox/<int:sid>/", view=tchat_view, name="tchatbox"),
+    path(route="teacher_chat/", view=teacher_chat_view, name="teacher_chat"),
 ]

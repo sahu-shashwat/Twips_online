@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.auth.models import User
 import random
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
@@ -80,10 +81,14 @@ def buy_course(request, pk):
     print(res.tid, res.price)
     if request.method == "POST":
         if not (buy_course_model.objects.filter(stud_id=request.user.id, course_id=pk)):
-            if buy_course_model.objects.create(stud_id=request.user.id, course_id=pk):
+            buy = buy_course_model.objects.create(
+                stud_id=request.user.id, course_id=pk, teacher_id=res.tid
+            )
+            if buy:
                 price = teacher_model.objects.get(id=res.tid).payment
+                print(price)
                 teacher_model.objects.filter(id=res.tid).update(
-                    payment=(price + res.price)
+                    payment=(int(price) + int(res.price))
                 )
                 messages.success(request, f"You bougth the {res.course_name} course")
                 return redirect("/student/home")
@@ -115,8 +120,12 @@ def my_course(request):
 
 def course_video(request, pk):
     res = course_video_model.objects.filter(cid=pk)
+    tid = course_model.objects.get(cid=pk).tid
+    print(tid, pk)
     return render(
-        request=request, template_name="course_video.html", context={"res": res}
+        request=request,
+        template_name="course_video.html",
+        context={"res": res, "cid": pk, "tid": tid},
     )
 
 

@@ -1,5 +1,11 @@
 from django import forms
-from teacher.models import teacher_model, domain_model, course_model, course_video_model
+from teacher.models import (
+    teacher_model,
+    domain_model,
+    course_model,
+    course_video_model,
+    chat_model,
+)
 from django.contrib.auth.hashers import make_password
 import re
 from django.contrib.auth.models import User
@@ -106,9 +112,15 @@ class teacher_form(forms.ModelForm):
 
 
 class teacher_login_form(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control","placeholder":"Enter username"}))
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"class": "form-control", "placeholder": "Enter username"}
+        )
+    )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"class": "form-control","placeholder":"Enter password"})
+        widget=forms.PasswordInput(
+            attrs={"class": "form-control", "placeholder": "Enter password"}
+        )
     )
 
     # def __init__(self, *args, **kwargs):
@@ -158,19 +170,19 @@ class domain_form(forms.ModelForm):
     class Meta:
         model = domain_model
         fields = "__all__"
+
     def __init__(self, *args, **kwargs):
         super(domain_form, self).__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs["class"] = "form-control"
             field.widget.attrs["placeholder"] = "Enter " + str(field.label)
 
-    
-
 
 class course_form(forms.ModelForm):
     class Meta:
         model = course_model
         exclude = ["tid"]
+
     def __init__(self, *args, **kwargs):
         super(course_form, self).__init__(*args, **kwargs)
         for field in self.fields.values():
@@ -181,9 +193,14 @@ class course_form(forms.ModelForm):
 class video_form(forms.ModelForm):
     class Meta:
         model = course_video_model
-        fields = "__all__"
+        exclude = ["tid"]
+
     def __init__(self, *args, **kwargs):
+        course = kwargs.pop("course", None)
         super(video_form, self).__init__(*args, **kwargs)
+        self.fields["cid"] = forms.ModelChoiceField(
+            queryset=course_model.objects.filter(tid=course)
+        )
         for field in self.fields.values():
             field.widget.attrs["class"] = "form-control"
             field.widget.attrs["placeholder"] = "Enter " + str(field.label)
@@ -231,3 +248,33 @@ class changepwd_form(forms.Form):
                 "New password and re-entered password should be same as password"
             )
         return paswd
+
+
+class chat_form(forms.ModelForm):
+    class Meta:
+        model = chat_model
+        fields = ["schat", "simage", "sfile"]
+
+    def __init__(self, *args, **kwargs):
+        super(chat_form, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs["class"] = "form-control"
+            field.widget.attrs["placeholder"] = "Enter " + str(field.label)
+        self.fields["simage"].required = False
+        self.fields["sfile"].required = False
+        self.fields["schat"].required = False
+
+
+class tchat_form(forms.ModelForm):
+    class Meta:
+        model = chat_model
+        fields = ["tchat", "timage", "tfile"]
+
+    def __init__(self, *args, **kwargs):
+        super(tchat_form, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs["class"] = "form-control"
+            field.widget.attrs["placeholder"] = "Enter " + str(field.label)
+        self.fields["timage"].required = False
+        self.fields["tfile"].required = False
+        self.fields["tchat"].required = False

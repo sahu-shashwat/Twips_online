@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chat Box</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bacasime+Antique&family=Bree+Serif&family=Playfair+Display:ital@1&family=Poppins:wght@100;200;300;400;600;700&family=Roboto:wght@900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+      <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    .chat-box {
+      max-width: 700px;
+      margin: 50px auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .chat-container {
+      padding: 10px;
+      height: 300px;
+      overflow-y: scroll;
+      /* border: 1px solid red; */
+    }
+
+    .message {
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      max-width: 70%;
+    }
+
+    .received {
+      background-color: #e0e0e0;
+      align-self: flex-start;
+    }
+
+    .sent {
+      background-color: #007bff;
+      color: #fff;
+      align-self: flex-end;
+      margin-left: 30%;
+    }
+
+    .input-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: #fff;
+    }
+
+    .input-container input {
+      flex: 1;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .input-container button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .input-container button:hover {
+      background-color: #0056b3;
+    }
+    .form-control
+    {
+      background-color: #007bff;
+    }
+  </style>
+  <body>
+    {% if chat %}
+    <div class="chat-box">
+      <div class="chat-container">
+        {% for i in chat %} 
+        
+        {% if i.tchat or i.timage or i.tfile %} 
+
+            {% if i.tchat %}
+            <div class="message sent">
+            <p>{{i.tchat}}</p>
+            </div>
+            {% endif %} 
+            
+            {% if i.timage %}
+            <div class="message sent">
+            <img src="{{i.timage.url}}" alt="no image" width="50" height="50" />
+            </div>
+            {% endif %} 
+            
+            {% if i.tfile %}
+            <div class="message sent">
+                <a href="{{i.tfile.url}}" download>{{i.tfile}}</a>
+            </div>
+            {% endif %} 
+            
+        {% endif %} 
+        
+        {% if i.schat or i.simage or i.sfile %}
+        
+          {% if i.schat %}
+          <div class="message received">
+          <p>{{i.schat}}</p>
+          </div>
+          {% endif %}
+
+          {% if i.simage %}
+          <div class="message received">
+            <img src="{{i.simage.url}}" alt="no image" width="50" height="50" />
+          </div>
+          {% endif %}
+
+          {% if i.sfile %}
+          <div class="message received">
+            <a href="{{i.sfile.url}}" download>{{i.sfile}}</a>
+          </div>
+          {% endif %}
+        
+        {% endif %}
+    {% endfor %}
+    </div>
+    {% endif %}
+
+ 
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="input-container">
+          {{form.tchat}} {{form.timage}}{{form.tfile}}
+          <input type="submit" class="send" value="send" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+

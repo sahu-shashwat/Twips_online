@@ -1,6 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from teacher.models import teacher_model, domain_model, course_model, course_video_model
+from student.models import otp_model, buy_course_model
+from django.contrib.auth.models import User
+from teacher.models import (
+    teacher_model,
+    domain_model,
+    course_model,
+    course_video_model,
+    chat_model,
+)
 from teacher.forms import (
     teacher_form,
     teacher_login_form,
@@ -8,6 +16,8 @@ from teacher.forms import (
     course_form,
     video_form,
     changepwd_form,
+    chat_form,
+    tchat_form,
 )
 
 from django.contrib.auth.decorators import login_required
@@ -111,7 +121,7 @@ def register_course(request):
     if request.method == "POST" and request.FILES:
         form = course_form(request.POST, request.FILES)
         if form.is_valid():
-            data = form.save(commit=True)
+            data = form.save(commit=False)
             data.tid = request.user.id
             if data:
                 form.save()
@@ -167,11 +177,14 @@ def list_course(request):
 
 
 def register_video(request):
-    form = video_form()
+    form = video_form(course=request.user.id)
     if request.method == "POST":
-        form = video_form(request.POST)
+        form = video_form(request.POST, course=request.user.id)
         if form.is_valid():
-            form.save()
+            data = form.save(commit=False)
+            data.tid = request.user.id
+            if data:
+                form.save()
             messages.success(request, " video link stored")
         else:
             messages.error(request, " video link not stored")
@@ -182,10 +195,15 @@ def register_video(request):
 
 
 def update_video(request, pk):
-    form = video_form(instance=course_video_model.objects.get(vid=pk))
+    form = video_form(
+        instance=course_video_model.objects.get(vid=pk), course=request.user.id
+    )
     if request.method == "POST":
         form = video_form(
-            request.POST, request.FILES, instance=course_video_model.objects.get(vid=pk)
+            request.POST,
+            request.FILES,
+            instance=course_video_model.objects.get(vid=pk),
+            course=request.user.id,
         )
         if form:
             form.save()
@@ -216,13 +234,12 @@ def list_video(request, pk):
 
 
 def forgot_pwd_view(request):
-    res = teacher_model.objects.all().values_list("email")
-
-    global otp_confirm
+    res = User.objects.all().values_list("email")
     if request.method == "POST":
         otp = random.randint(000000, 999999)
-        otp_confirm = otp
         email = request.POST["email"]
+        otp_model.objects.filter(username=email).delete()
+        otp_model.objects.create(otp_no=otp, username=email)
         if (email,) in res:
             subject = "Teacher Verification Code"
             msg = f"""Dear User,
@@ -234,16 +251,19 @@ def forgot_pwd_view(request):
                 from_email=settings.EMAIL_HOST_USER,
                 recipient_list=[email],
             )
-            email_id = teacher_model.objects.get(email=email)
-            return redirect(f"/teacher/otp/{email_id.id}/")
+            email_id = User.objects.get(email=email)
+            return redirect(f"/teacher/otp/{email_id.id}/{email}/")
         else:
             messages.error(request, "Email or OTP is incorrect.")
     return render(request=request, template_name="te_forgotten_pwd.html")
 
 
-def teacher_otp_view(request, pk):
+def teacher_otp_view(request, pk, email):
+    print(pk, email)
     if request.method == "POST":
-        if str(otp_confirm) == str(request.POST["otp"]):
+        otp_confirm = otp_model.objects.get(username=email)
+        if str(otp_confirm.otp_no) == str(request.POST["otp"]):
+            otp_model.objects.get(username=email).delete()
             return redirect(f"/teacher/changepwd/{pk}/")
         else:
             return redirect("/teacher/forgotpwd")
@@ -253,17 +273,70 @@ def teacher_otp_view(request, pk):
 def changepwd_view(request, pk):
     form = changepwd_form()
     if request.method == "POST":
-        res = teacher_model.objects.get(id=pk)
+        res = User.objects.get(id=pk)
         form = changepwd_form(request.POST)
         if form.is_valid():
             if (
                 form.cleaned_data["enter_new_password"]
                 == form.cleaned_data["re_enter_password"]
             ):
-                teacher_model.objects.filter(id=pk).update(
+                User.objects.filter(id=pk).update(
                     password=make_password(form.cleaned_data["enter_new_password"])
                 )
-                return HttpResponse("Password is changed")
+                return redirect("/teacher/login/")
     return render(
         request=request, template_name="createpwd.html", context={"form": form}
+    )
+
+
+def chat_view(request, tid, cid):
+    chat = chat_model.objects.filter(tid=tid, sid=request.user.id).order_by("date")
+    print(chat)
+    print(tid, cid)
+    form = chat_form()
+    if request.method == "POST" or request.FILES:
+        print("haii")
+        form = chat_form(request.POST,request.FILES)
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.sid = request.user.id
+            data.tid = tid
+            data.course_id = cid
+            if data:
+                form.save()
+                return redirect(f"/teacher/chatbox/{tid}/{cid}/")
+    return render(
+        request=request,
+        template_name="chatbox.html",
+        context={"form": form, "chat": chat},
+    )
+
+
+def teacher_chat_view(request):
+    res = buy_course_model.objects.filter(teacher_id=request.user.id)
+    student = User.objects.filter(id__in=res, is_staff=False)
+    return render(
+        request, template_name="teacher_chat.html", context={"student": student}
+    )
+
+
+def tchat_view(request, sid):
+    chat = chat_model.objects.filter(tid=request.user.id, sid=sid).order_by("date")
+    print(chat)
+    print(sid)
+    form = tchat_form()
+    if request.method == "POST" or request.FILES:
+        form = tchat_form(request.POST, request.FILES)
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.sid = sid
+            data.tid = request.user.id
+            data.course_id = 0
+            if data:
+                form.save()
+                return redirect(f"/teacher/tchatbox/{sid}/")
+    return render(
+        request=request,
+        template_name="tchatbox.html",
+        context={"form": form, "chat": chat},
     )
