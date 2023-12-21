@@ -198,7 +198,7 @@
       .sub-header {
         height: 50vh;
         width: 100%;
-        background-image: url(https://cdn.pixabay.com/photo/2015/07/19/10/00/school-work-851328_1280.jpg);
+        background-image: url(https://cdn.pixabay.com/photo/2015/09/09/18/22/dictionary-932327_1280.jpg);
         background-position: center;
         text-align: center;
         background-size: cover;
@@ -287,7 +287,14 @@
         cursor: pointer;
         padding: 3px 22px;
       }
-    
+      ul #logout {
+        background-color: rgb(255, 254, 253);
+        border-radius: 20px;
+        padding: 3px 22px;
+        color: red;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
+          0 5px 5px 0 rgba(0, 0, 0, 0.24);
+      }
     </style>
   </head>
   <body>
@@ -300,8 +307,12 @@
             <li><a href="{% url 'teacher:register_course' %}">Register Course</a></li>
             <li><a href="{% url 'teacher:register_domain' %}">Register Domain</a></li>
             <li><a href="{% url 'teacher:register_video' %}">Register video</a></li>
+            <li><a href="{% url 'teacher:teacher_chat' %}">My Chat</a></li>
+            <li>
             <li class="activate"><a href="{% url 'teacher:list_course' %}">Uploaded Course</a></li>
-            <li><a href="{% url 'teacher:logout' %}">Logout</a></li>
+            <li id="logout">
+              <a style="color: red" href="{% url 'teacher:logout' %}">Logout</a>
+            </li>
           </ul>
         </div>
       </nav>

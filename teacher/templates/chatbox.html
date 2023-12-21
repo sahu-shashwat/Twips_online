@@ -6,27 +6,38 @@
     <!-- <link rel="stylesheet" href="styles.css"> -->
   </head>
   <style>
-    body {
+     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f5f5f5;
+      background: linear-gradient(
+          135deg,
+          rgba(170, 214, 157, 0.98) 0%,
+          rgb(93, 121, 223) 107%,
+          rgba(26, 35, 147, 1) 122%,
+          rgb(212, 251, 193) 100%
+        );
     }
 
     .chat-box {
-      max-width: 700px;
+      max-width: 520px;
       margin: 50px auto;
       border: 1px solid #ccc;
       border-radius: 5px;
       overflow: hidden;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     }
-
+    .chat-box:hover{
+      transition: 0.5s;
+      max-height: 380px;
+    }
     .chat-container {
       padding: 10px;
       height: 300px;
       overflow-y: scroll;
       /* border: 1px solid red; */
     }
+  
 
     .message {
       padding: 8px 12px;
@@ -52,7 +63,13 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px;
-      background-color: #fff;
+      background: linear-gradient(
+          135deg,
+          rgba(208, 249, 197, 0.98) 0%,
+          rgb(93, 121, 223) 107%,
+          rgba(26, 35, 147, 1) 122%,
+          rgb(212, 251, 193) 100%
+        );
     }
 
     .input-container input {
@@ -62,7 +79,7 @@
       border: 1px solid #ccc;
     }
 
-    .input-container button {
+    .input-container .send {
       padding: 8px 16px;
       border: none;
       border-radius: 5px;
@@ -72,12 +89,8 @@
       transition: background-color 0.3s ease;
     }
 
-    .input-container button:hover {
+    .input-container .send:hover {
       background-color: #0056b3;
-    }
-    .form-control
-    {
-      background-color: #007bff;
     }
   </style>
   <body>
@@ -136,7 +149,7 @@
       {% csrf_token %}
         <div class="input-container">
           {{form.schat}} {{form.simage}} {{form.sfile}}
-          <input type="submit" class="sumbit"  value="send" />
+          <input type="submit" class="send"  value="send" />
         </div>
     </form>
     </div>
