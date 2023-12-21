@@ -192,6 +192,14 @@
         color: #a40f04;
         box-shadow: 0 0 1rem #f13427;
       }
+      ul #logout {
+        background-color: rgb(255, 254, 253);
+        border-radius: 20px;
+        padding: 3px 22px;
+        color: red;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
+          0 5px 5px 0 rgba(0, 0, 0, 0.24);
+      }
     </style>
   </head>
   <body>
@@ -206,7 +214,9 @@
             <li class="activate"><a href="">Home</a></li>
             <li><a href="{% url 'student:all_course' %}">All Courses</a></li>
             <li><a href="{% url 'student:my_course'%}">My Courses</a></li>
-            <li><a href="{% url 'student:logout' %}">Logout </a></li>
+            <li id="logout">
+              <a style="color: red" href="{% url 'teacher:logout' %}">Logout</a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -222,49 +232,50 @@
     </section>
     <section class="courses">
       <h1>Course we offer</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis</p>
       <div class="row">
         <div class="course-col">
-          <h3>Intermediate</h3>
+          <h3>Python</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-            aspernatur ducimus illum tempora, unde mollitia reprehenderit harum.
-            Quibusdam fugit labore officiis ipsam minus?
+            This course includes an overview of the various tools available for
+            writing and running Python, and gets students coding quickly. It
+            also provides hands-on coding exercises using commonly used data
+            structures, writing custom functions, and reading and writing to
+            files.
           </p>
         </div>
         <div class="course-col">
-          <h3>Degree</h3>
+          <h3>Government</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-            aspernatur ducimus illum tempora, unde mollitia reprehenderit harum.
-            Quibusdam fugit labore officiis ipsam minus?
+            Aspirants of Public Sector jobs can appear for multiple Government
+            Exams After 12th since these jobs are the most lucrative and secured
+            career option and are the most sought-after amongst students who are
+            done with the 12th Board.
           </p>
         </div>
         <div class="course-col">
-          <h3>Post Graduate</h3>
+          <h3>UPSC</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-            aspernatur ducimus illum tempora, unde mollitia reprehenderit harum.
-            Quibusdam fugit labore officiis ipsam minus?
+            The UPSC Syllabus for Prelims includes two compulsory papers:
+            General Studies Paper-I and General Studies Paper-II (also known as
+            the CSAT or Civil Services Aptitude Test). These papers cover a wide
+            range of subjects, including history, geography, economics, polity,
+            environment, science, and current affairs.
           </p>
         </div>
       </div>
-    </section>
-
-    <section class="footer">
-      <h3>About us</h3>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. <br />Officia
-        debitis veniam cum iste eos facilis dicta. Eos et consequuntur nesciunt.
-      </p>
-      <div class="icons">
-        <a href="https://www.instagram.com/pyspiders_punjagutta/"
-              ><i class="bx bxl-instagram-alt"></i
-            ></a>
-        <i class="bx bxl-facebook"></i>
-        <i class="bx bxl-twitter"></i>
-        <i class="bx bxl-linkedin"></i>
-      </div>
-    </section>
+      <section class="footer">
+        <h3>About us</h3>
+        <p>
+          Students get access to various resources such as educational pdfs,
+          <br />academic activities, alerts and other important information.
+        </p>
+        <div class="icons">
+          <a href="https://www.instagram.com/pyspiders_punjagutta/">
+          <i class="bx bxl-instagram-alt"></i></a>
+          <i class="bx bxl-facebook"></i>
+          <i class="bx bxl-twitter"></i>
+          <i class="bx bxl-linkedin"></i>
+        </div>
+      </section>
   </body>
 </html>

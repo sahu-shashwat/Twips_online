@@ -296,7 +296,7 @@ def chat_view(request, tid, cid):
     form = chat_form()
     if request.method == "POST" or request.FILES:
         print("haii")
-        form = chat_form(request.POST,request.FILES)
+        form = chat_form(request.POST, request.FILES)
         if form.is_valid():
             data = form.save(commit=False)
             data.sid = request.user.id
@@ -313,8 +313,10 @@ def chat_view(request, tid, cid):
 
 
 def teacher_chat_view(request):
-    res = buy_course_model.objects.filter(teacher_id=request.user.id)
-    student = User.objects.filter(id__in=res, is_staff=False)
+    res = buy_course_model.objects.filter(teacher_id=request.user.id).values('stud_id')
+    print(res)
+    student = User.objects.filter(id__in=res)
+    print(student)
     return render(
         request, template_name="teacher_chat.html", context={"student": student}
     )

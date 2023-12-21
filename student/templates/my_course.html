@@ -288,6 +288,14 @@
         cursor: pointer;
         padding: 3px 22px;
       }
+      ul #logout {
+        background-color: rgb(255, 254, 253);
+        border-radius: 20px;
+        padding: 3px 22px;
+        color: red;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
+          0 5px 5px 0 rgba(0, 0, 0, 0.24);
+      }
     </style>
   </head>
   <body>
@@ -301,7 +309,9 @@
             <li class="activate">
               <a href="{% url 'student:my_course'%}">My Courses</a>
             </li>
-            <li><a href="{% url 'student:logout' %}">Logout </a></li>
+            <li id="logout">
+              <a style="color: red" href="{% url 'teacher:logout' %}">Logout</a>
+            </li>
           </ul>
         </div>
       </nav>

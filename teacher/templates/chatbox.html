@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>Chat Box</title>
     <!-- <link rel="stylesheet" href="styles.css"> -->
-  </head>
+  
   <style>
      body {
       font-family: Arial, sans-serif;
@@ -92,10 +92,107 @@
     .input-container .send:hover {
       background-color: #0056b3;
     }
+    
+      .sub-header {
+        height: 30vh;
+        width: 100%;
+        background-image: url(https://cdn.pixabay.com/photo/2017/09/02/11/04/adult-education-2706977_1280.jpg);
+        background-position: center;
+        text-align: center;
+        background-size: cover;
+        color: #fff;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2% 6%;
+      }
+      nav img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .nav-links {
+        text-align: right;
+        flex: 1;
+        padding-bottom: 60px;
+      }
+      .nav-links ul li {
+        list-style: none;
+        display: inline-block;
+        position: relative;
+        padding: 4px 12px;
+      }
+
+      .nav-links ul li a {
+        color: aliceblue;
+        text-decoration: none;
+        font-size: 16px;
+      }
+
+      .nav-links ul li::after {
+        content: "";
+        width: 0px;
+        height: 2px;
+        background: #f44336;
+        display: block;
+        margin: auto;
+        transition: 0.5s;
+      }
+      .nav-links .activate::after {
+        content: "";
+        width: 100%;
+        height: 2px;
+        background: #f44336;
+        display: block;
+        margin: auto;
+      }
+
+      .nav-links ul :hover:after {
+        width: 100%;
+      }
+      .text-box {
+        width: 90%;
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+      ul #logout {
+        background-color: rgb(255, 254, 253);
+        border-radius: 20px;
+        padding: 3px 22px;
+        color: red;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
+          0 5px 5px 0 rgba(0, 0, 0, 0.24);
+      }
   </style>
+  {% load static%}
+  </head>
   <body>
+    <section class="sub-header">
+      <nav>
+        <img src="{% static 'images/logo2.png' %}" alt="" />
+        <div class="nav-links">
+          <ul>
+            <li><a href="{% url 'student:home' %}">Home</a></li>
+            <li><a href="{% url 'student:all_course' %}">All Courses</a></li>
+            <li class="activate">
+              <a href="{% url 'student:my_course'%}">My Courses</a>
+            </li>
+            <li id="logout">
+              <a style="color: red" href="{% url 'teacher:logout' %}">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
+    </section>
     {% if chat %}
-    <div class="chat-box">
+    <div class="chat-box" style="background-color: aliceblue;">
       <div class="chat-container">
         {% for i in chat %} 
         

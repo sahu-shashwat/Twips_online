@@ -215,6 +215,14 @@
 
         /* transition: 1s; */
       }
+      ul #logout {
+        background-color: rgb(255, 254, 253);
+        border-radius: 20px;
+        padding: 3px 22px;
+        color: red;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
+          0 5px 5px 0 rgba(0, 0, 0, 0.24);
+      }
     </style>
   </head>
   <body>
@@ -228,7 +236,9 @@
               <li><a href="{% url 'teacher:register_domain' %}">Register Domain</a></li>
               <li><a href="{% url 'teacher:register_video' %}">Register video</a></li>
               <li><a href="{% url 'teacher:list_course' %}">Uploaded Course</a></li>
-              <li><a href="{% url 'teacher:logout' %}">Logout</a></li>
+              <li id="logout">
+                <a style="color: red" href="{% url 'teacher:logout' %}">Logout</a>
+              </li>
             </ul>
           </div>
         </nav>
