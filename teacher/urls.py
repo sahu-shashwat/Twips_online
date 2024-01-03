@@ -23,6 +23,6 @@ urlpatterns = [
     path(route="forgotpwd/", view=forgot_pwd_view, name="forgotpwd"),
     path(route="changepwd/<int:pk>/", view=changepwd_view, name="changepwd"),
     path(route="chatbox/<int:tid>/<int:cid>/", view=chat_view, name="chatbox"),
-    path(route="tchatbox/<int:sid>/", view=tchat_view, name="tchatbox"),
+    path(route="tchatbox/  <int:sid>/", view=tchat_view, name="tchatbox"),
     path(route="teacher_chat/", view=teacher_chat_view, name="teacher_chat"),
 ]
