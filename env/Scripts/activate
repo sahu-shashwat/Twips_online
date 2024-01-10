@@ -38,11 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-<<<<<<< HEAD
 VIRTUAL_ENV="C:\Users\venky\Documents\GitHub\Twips_online\env"
-=======
-VIRTUAL_ENV="C:\Users\shash\Documents\GitHub\Twips_online\env"
->>>>>>> 74f3cf1e993e61ad765d454443ce2e6f05b3bae9
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
