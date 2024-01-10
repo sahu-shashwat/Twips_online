@@ -8,7 +8,11 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
+<<<<<<< HEAD
 set VIRTUAL_ENV=C:\Users\venky\Documents\GitHub\Twips_online\env
+=======
+set VIRTUAL_ENV=C:\Users\shash\Documents\GitHub\Twips_online\env
+>>>>>>> 74f3cf1e993e61ad765d454443ce2e6f05b3bae9
 
 if not defined PROMPT set PROMPT=$P$G
 
