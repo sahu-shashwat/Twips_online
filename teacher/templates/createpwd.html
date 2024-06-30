@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Password</title>
+
+     
+    {% load static %}
+
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link href="css/style.css" rel="stylesheet" id="style">
+    <!-- Bootstrap core Library -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+    <!-- Font Awesome-->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <style>
+        /*author:starttemplate*/
+        /*reference site : starttemplate.com*/
+        body {
+        background-image:url('{% static 'images/otp.jpg' %}');
+        background-position:center;
+        background-size:cover;
+        
+        -webkit-font-smoothing: antialiased;
+        font: normal 14px Roboto,arial,sans-serif;
+        /* font-family: cursive!important; */
+        }
+        label
+        {
+            font-family: cursive;
+        }
+
+        input
+        {
+            background-color: transparent;
+        
+        }
+        .container {
+            padding: 110px;
+        }
+        .btn{
+            margin: 10px;
+            box-shadow: 3px 3px 1px black;
+            border-radius: 2px 4.5px 2px 4.5px;
+        }
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #cfcfcf!important;
+            opacity: 1; /* Firefox */
+            font-size:14px!important;
+            
+        }
+        .form-login {
+            background-color: rgba(0,0,0,0.55);
+            padding-top: 10px;
+            padding-bottom: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 7px 20px 7px 20px;
+            border-color:#d2d2d2;
+            border-width: 5px;
+            color:white;
+            box-shadow:rgba(12, 12, 12, 0.397) none repeat scroll 0 0;
+
+        }
+        .form-login:hover
+        {
+            transition: 0.5s;
+            border-radius: 15px;
+            box-shadow: 7px 7px 3px #444;
+            transform: scale(1.008);
+            background: rgba(12, 12, 12, 0.397) none repeat scroll 0 0;
+        }
+        .form-control{
+            background:transparent!important;
+            color:white!important;
+            font-size: 18px!important;
+        }
+        h1{
+            color:white!important;
+        }
+        h4 { 
+        border:0 solid #fff; 
+        border-bottom-width:1px;
+        padding-bottom:10px;
+        text-align: center;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+        
+        .text-white{
+            color: white!important;
+        }
+        .wrapper {
+            text-align: center;
+        }
+        .footer p{
+            font-size: 18px;
+        }
+        .btn:hover
+        {
+            transform: scale(1.05);
+            transition: 0.5s;
+            border-radius: 5px;
+            box-shadow: 3.5px 3.5px 1px #363636;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-5 col-md-4 text-center">
+                <!-- <h1 class='text-white'>Teacher Register Form</h1> -->
+                <div class="form-login"></br>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                    <h4>Change Password</h4>                   
+                     {{form}}
+                    <div class="wrapper">
+                        <span class="group-btn">
+                            <input type="submit" class="btn btn-danger btn-md" value="Create">
+                        </span>                           
+                    </div>
+                    </form>                   
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- </br></br></br> -->
+    </div>
+    <!-- <h1>Create Password Page</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{form}}
+        </table>
+        <input type="submit" value="Create">
+    </form> -->
+</body>
+</html>

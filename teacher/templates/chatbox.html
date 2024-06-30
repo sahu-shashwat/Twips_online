@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chat Box</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+  
+  <style>
+     body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(
+          135deg,
+          rgba(170, 214, 157, 0.98) 0%,
+          rgb(93, 121, 223) 107%,
+          rgba(26, 35, 147, 1) 122%,
+          rgb(212, 251, 193) 100%
+        );
+    }
+
+    .chat-box {
+      max-width: 520px;
+      margin: 50px auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+    .chat-box:hover{
+      transition: 0.5s;
+      max-height: 380px;
+    }
+    .chat-container {
+      padding: 10px;
+      height: 300px;
+      overflow-y: scroll;
+      /* border: 1px solid red; */
+    }
+  
+
+    .message {
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      max-width: 70%;
+    }
+
+    .received {
+      background-color: #e0e0e0;
+      align-self: flex-start;
+    }
+
+    .sent {
+      background-color: #007bff;
+      color: #fff;
+      align-self: flex-end;
+      margin-left: 30%;
+    }
+
+    .input-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px;
+      background: linear-gradient(
+          135deg,
+          rgba(208, 249, 197, 0.98) 0%,
+          rgb(93, 121, 223) 107%,
+          rgba(26, 35, 147, 1) 122%,
+          rgb(212, 251, 193) 100%
+        );
+    }
+
+    .input-container input {
+      flex: 1;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .input-container .send {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .input-container .send:hover {
+      background-color: #0056b3;
+    }
+    
+      .sub-header {
+        height: 30vh;
+        width: 100%;
+        background-image: url(https://cdn.pixabay.com/photo/2017/09/02/11/04/adult-education-2706977_1280.jpg);
+        background-position: center;
+        text-align: center;
+        background-size: cover;
+        color: #fff;
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2% 6%;
+      }
+      nav img {
+        width: 100px;
+        height: 100px;
+      }
+
+      .nav-links {
+        text-align: right;
+        flex: 1;
+        padding-bottom: 60px;
+      }
+      .nav-links ul li {
+        list-style: none;
+        display: inline-block;
+        position: relative;
+        padding: 4px 12px;
+      }
+
+      .nav-links ul li a {
+        color: aliceblue;
+        text-decoration: none;
+        font-size: 16px;
+      }
+
+      .nav-links ul li::after {
+        content: "";
+        width: 0px;
+        height: 2px;
+        background: #f44336;
+        display: block;
+        margin: auto;
+        transition: 0.5s;
+      }
+      .nav-links .activate::after {
+        content: "";
+        width: 100%;
+        height: 2px;
+        background: #f44336;
+        display: block;
+        margin: auto;
+      }
+
+      .nav-links ul :hover:after {
+        width: 100%;
+      }
+      .text-box {
+        width: 90%;
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+      ul #logout {
+        background-color: rgb(255, 254, 253);
+        border-radius: 20px;
+        padding: 3px 22px;
+        color: red;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
+          0 5px 5px 0 rgba(0, 0, 0, 0.24);
+      }
+  </style>
+  {% load static%}
+  </head>
+  <body>
+    <section class="sub-header">
+      <nav>
+        <img src="{% static 'images/logo2.png' %}" alt="" />
+        <div class="nav-links">
+          <ul>
+            <li><a href="{% url 'student:home' %}">Home</a></li>
+            <li><a href="{% url 'student:all_course' %}">All Courses</a></li>
+            <li class="activate">
+              <a href="{% url 'student:my_course'%}">My Courses</a>
+            </li>
+            <li id="logout">
+              <a style="color: red" href="{% url 'teacher:logout' %}">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
+    </section>
+    {% if chat %}
+    <div class="chat-box" style="background-color: aliceblue;">
+      <div class="chat-container">
+        {% for i in chat %} 
+        
+        {% if i.tchat or i.timage or i.tfile %} 
+
+            {% if i.tchat %}
+            <div class="message received">
+            <p>{{i.tchat}}</p>
+            </div>
+            {% endif %} 
+            
+            {% if i.timage %}
+            <div class="message received">
+            <img src="{{i.timage.url}}" alt="no image" width="50" height="50" />
+            </div>
+            {% endif %} 
+            
+            {% if i.tfile %}
+            <div class="message received">
+                <a href="{{i.tfile.url}}" download>{{i.tfile}}</a>
+            </div>
+            {% endif %} 
+            
+        {% endif %} 
+        
+        {% if i.schat or i.simage or i.sfile %}
+        
+          {% if i.schat %}
+          <div class="message sent">
+          <p>{{i.schat}}</p>
+          </div>
+          {% endif %}
+
+          {% if i.simage %}
+          <div class="message sent">
+            <img src="{{i.simage.url}}" alt="no image" width="50" height="50" />
+          </div>
+          {% endif %}
+
+          {% if i.sfile %}
+          <div class="message sent">
+            <a href="{{i.sfile.url}}" download>{{i.sfile}}</a>
+          </div>
+          {% endif %}
+        
+        {% endif %}
+    {% endfor %}
+    </div>
+    {% endif %}
+    <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="input-container">
+          {{form.schat}} {{form.simage}} {{form.sfile}}
+          <input type="submit" class="send"  value="send" />
+        </div>
+    </form>
+    </div>
+  </body>
+</html>

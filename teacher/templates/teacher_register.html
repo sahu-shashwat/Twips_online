@@ -4,9 +4,147 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Page</title>
+    {% load static %}
+
+    <style>
+        /*author:starttemplate*/
+        /*reference site : starttemplate.com*/
+        body {
+        background-image:url("{% static 'images/teacher.jpg' %}");
+        background-position:center;
+        background-size: cover ;
+        
+        -webkit-font-smoothing: antialiased;
+        font: normal 14px Roboto,arial,sans-serif;
+        /* font-family: 'Dancing Script', cursive!important; */
+        }
+
+        .container {
+            padding: 110px;
+            margin-top: -80px;
+            /* max-width: 1350px; */
+            padding-bottom: 0px;
+
+        }
+
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #ffffff!important;
+            opacity: 1; /* Firefox */
+            font-size:18px!important;
+            
+        }
+        .form-login {
+            background-color: rgba(0,0,0,0.55);
+            margin-right: -70px;
+            margin-left: 65px;
+            padding-top: 10px;
+            padding-bottom: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 7px 20px 7px 20px;
+            border-color:#d2d2d2;
+            border-width: 5px;
+            color:white;
+            box-shadow:rgba(12, 12, 12, 0.397) none repeat scroll 0 0;
+        }
+        .form-login:hover
+        {
+            transition: 0.5s;
+            border-radius: 15px;
+            box-shadow: 7px 7px 3px #222222;
+            transform: scale(1.008);
+            background: rgba(12, 12, 12, 0.24) none repeat scroll 0 0;
+        }
+        
+        .form-control{
+            background:rgba(0, 0, 0, 0.342)!important;
+            color:white!important;
+            font-size: 18px!important;
+        }
+      
+        h1{
+            color:white!important;
+        }
+        h4{ 
+        border:0 solid #fff; 
+        border-bottom-width:1px;
+        padding-bottom:10px;
+        text-align: center;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            /* box-shadow: 10px 10px 2px #444444; */
+            
+            
+        }
+        .btn{
+            box-shadow: 3px 3px 1px black;
+            border-radius: 2px 7px 2px 7px!important;
+        }
+        .btn:hover
+        {
+            transform: scale(1.05);
+            transition: 0.5s;
+            border-radius: 4px!important;
+            box-shadow: 3.5px 3.5px 1px #222222;
+        }
+        .text-white{
+            color: white!important;
+            margin-right: -170px;
+            /* margin-left: 370px; */
+        }
+        .wrapper {
+            text-align: center;
+            margin: 10px;
+        }
+        .footer p{
+            font-size: 18px;
+        }
+        label
+        {
+            font-family: cursive;
+        }
+    </style>
+
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    
 </head>
 <body>
-    <h1>Teacher Register Page</h1>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-5 col-md-4 text-center">
+                <h1 class='text-white'>Teacher Register Form</h1>
+                <div class="form-login"></br>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                    <h4>Secure Login</h4>                   
+                     {{form}}
+                    <div class="wrapper">
+                        <span class="group-btn">
+                            <input type="submit" class="btn btn-danger btn-md" value="Register">
+                        </span>                           
+                    </div>
+                    </form>                   
+                    <span>
+                        <a href="{% url 'teacher:login' %}" ><button class="btn btn-danger btn-md">Already User?</button></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- </br></br></br> -->
+    </div>
+</body>
+</html>
+
+    <!-- <h1>Teacher Register Page</h1>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
@@ -17,4 +155,4 @@
     <h2>Already User?</h2>
     <a href="{% url 'teacher:login' %}"><button>Login Page</button></a>
 </body>
-</html>
+</html> -->
